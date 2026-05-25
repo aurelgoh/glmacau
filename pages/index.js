@@ -2,6 +2,37 @@ import { useState } from "react";
 
 export default function Home() {
   const [register, setRegister] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  if (loggedIn) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#050b23",
+          color: "white",
+          padding: "20px",
+        }}
+      >
+        <h1 style={{ color: "#7c5cff" }}>
+          GL Macau Dashboard
+        </h1>
+
+        <div
+          style={{
+            background: "#101936",
+            padding: "20px",
+            borderRadius: "20px",
+            marginTop: "20px",
+          }}
+        >
+          <h2>Welcome admin8 👋</h2>
+          <p>Saldo: $10,000</p>
+          <p>Game GL5 Ball akan tampil di sini.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -29,7 +60,6 @@ export default function Home() {
             textAlign: "center",
             fontSize: "48px",
             color: "#7c5cff",
-            marginBottom: "10px",
           }}
         >
           GL Macau
@@ -38,18 +68,6 @@ export default function Home() {
         <h2 style={{ textAlign: "center" }}>
           {register ? "Create Account" : "Welcome Back!"}
         </h2>
-
-        <p
-          style={{
-            textAlign: "center",
-            color: "#aaa",
-            marginBottom: "20px",
-          }}
-        >
-          {register
-            ? "Register your new account"
-            : "Sign in to continue"}
-        </p>
 
         {register && (
           <input
@@ -78,13 +96,14 @@ export default function Home() {
         )}
 
         <button
-          onClick={() =>
-            alert(
-              register
-                ? "Register berhasil (sementara demo)"
-                : "Login berhasil (sementara demo)"
-            )
-          }
+          onClick={() => {
+            if (register) {
+              alert("Register berhasil");
+              setRegister(false);
+            } else {
+              setLoggedIn(true);
+            }
+          }}
           style={buttonStyle}
         >
           {register ? "Register" : "Sign In"}
@@ -94,7 +113,6 @@ export default function Home() {
           style={{
             textAlign: "center",
             marginTop: "20px",
-            color: "#bbb",
           }}
         >
           {register
@@ -107,9 +125,9 @@ export default function Home() {
             }
             style={{
               color: "#8b5cf6",
-              fontWeight: "bold",
-              marginLeft: "5px",
               cursor: "pointer",
+              marginLeft: "5px",
+              fontWeight: "bold",
             }}
           >
             {register ? "Login" : "Register now"}
@@ -126,10 +144,8 @@ const inputStyle = {
   marginTop: "12px",
   borderRadius: "18px",
   border: "none",
-  outline: "none",
   background: "#1c2550",
   color: "white",
-  fontSize: "16px",
 };
 
 const buttonStyle = {
