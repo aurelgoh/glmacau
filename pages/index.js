@@ -1,163 +1,186 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [register, setRegister] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
-  if (loggedIn) {
-    return (
-      <div
-        style={{
-          minHeight: "100vh",
-          background: "#050b23",
-          color: "white",
-          padding: "20px",
-        }}
-      >
-        <h1 style={{ color: "#7c5cff" }}>
-          GL Macau Dashboard
-        </h1>
+  const user = {
+    username: "admin8",
+    saldo: 10000,
+  };
 
-        <div
-          style={{
-            background: "#101936",
-            padding: "20px",
-            borderRadius: "20px",
-            marginTop: "20px",
-          }}
-        >
-          <h2>Welcome admin8 👋</h2>
-          <p>Saldo: $10,000</p>
-          <p>Game GL5 Ball akan tampil di sini.</p>
-        </div>
-      </div>
-    );
+  if (!loggedIn) {
+    return <h1>Loading...</h1>;
   }
 
   return (
-    <div
-      style={{
-        background: "#050b23",
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "white",
-        padding: "20px",
-      }}
-    >
-      <div
-        style={{
-          width: "380px",
-          background: "#101936",
-          padding: "35px",
-          borderRadius: "30px",
-          boxShadow: "0 0 45px rgba(110,80,255,.35)",
-        }}
-      >
-        <h1
-          style={{
-            textAlign: "center",
-            fontSize: "48px",
-            color: "#7c5cff",
-          }}
-        >
-          GL Macau
-        </h1>
+    <div style={styles.container}>
+      {/* Sidebar */}
+      <div style={styles.sidebar}>
+        <h2 style={styles.logo}>GL Macau</h2>
 
-        <h2 style={{ textAlign: "center" }}>
-          {register ? "Create Account" : "Welcome Back!"}
-        </h2>
-
-        {register && (
-          <input
-            placeholder="Phone Number"
-            style={inputStyle}
-          />
-        )}
-
-        <input
-          placeholder="Username"
-          style={inputStyle}
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          style={inputStyle}
-        />
-
-        {register && (
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            style={inputStyle}
-          />
-        )}
-
-        <button
-          onClick={() => {
-            if (register) {
-              alert("Register berhasil");
-              setRegister(false);
-            } else {
-              setLoggedIn(true);
-            }
-          }}
-          style={buttonStyle}
-        >
-          {register ? "Register" : "Sign In"}
+        <button style={styles.menuBtn}>🏠 Dashboard</button>
+        <button style={styles.menuBtn}>🎰 Casino</button>
+        <button style={styles.menuBtn}>💸 Deposit</button>
+        <button style={styles.menuBtn}>📤 Withdraw</button>
+        <button style={styles.menuBtn}>📜 History</button>
+        <button style={styles.logoutBtn}>
+          🚪 Logout
         </button>
+      </div>
 
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: "20px",
-          }}
-        >
-          {register
-            ? "Already have account?"
-            : "Don't have an account?"}
+      {/* Main */}
+      <div style={styles.main}>
+        <div style={styles.topCard}>
+          <div>
+            <h1>Welcome {user.username} 👋</h1>
+            <p>Premium Casino Dashboard</p>
+          </div>
 
-          <span
-            onClick={() =>
-              setRegister(!register)
-            }
-            style={{
-              color: "#8b5cf6",
-              cursor: "pointer",
-              marginLeft: "5px",
-              fontWeight: "bold",
-            }}
-          >
-            {register ? "Login" : "Register now"}
-          </span>
+          <div style={styles.balanceBox}>
+            <p>Balance</p>
+            <h2>${user.saldo}</h2>
+          </div>
+        </div>
+
+        <h2 style={{ marginBottom: 20 }}>Popular Games</h2>
+
+        <div style={styles.games}>
+          <div style={styles.gameCard}>
+            <h3>🎱 GL5 Ball</h3>
+            <p>Live prediction game</p>
+          </div>
+
+          <div style={styles.gameCard}>
+            <h3>🎰 Slot</h3>
+            <p>1000+ slot providers</p>
+          </div>
+
+          <div style={styles.gameCard}>
+            <h3>🃏 Baccarat</h3>
+            <p>Live casino table</p>
+          </div>
+
+          <div style={styles.gameCard}>
+            <h3>🎲 Roulette</h3>
+            <p>Real casino experience</p>
+          </div>
+        </div>
+
+        <div style={styles.transaction}>
+          <h2>Recent Transactions</h2>
+
+          <div style={styles.row}>
+            <span>Deposit</span>
+            <span style={{ color: "#00ff88" }}>+$500</span>
+          </div>
+
+          <div style={styles.row}>
+            <span>GL5 Ball Win</span>
+            <span style={{ color: "#00ff88" }}>+$1200</span>
+          </div>
+
+          <div style={styles.row}>
+            <span>Slot Lose</span>
+            <span style={{ color: "red" }}>-$300</span>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-const inputStyle = {
-  width: "100%",
-  padding: "16px",
-  marginTop: "12px",
-  borderRadius: "18px",
-  border: "none",
-  background: "#1c2550",
-  color: "white",
-};
+const styles = {
+  container: {
+    display: "flex",
+    minHeight: "100vh",
+    background: "#050A30",
+    color: "white",
+    fontFamily: "Arial",
+  },
 
-const buttonStyle = {
-  width: "100%",
-  marginTop: "22px",
-  padding: "16px",
-  border: "none",
-  borderRadius: "18px",
-  background:
-    "linear-gradient(to right,#9333ea,#2563eb)",
-  color: "white",
-  fontSize: "20px",
-  fontWeight: "bold",
-  cursor: "pointer",
+  sidebar: {
+    width: "260px",
+    background: "#101B50",
+    padding: "30px 20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "15px",
+    boxShadow: "0 0 20px rgba(140,82,255,0.2)",
+  },
+
+  logo: {
+    color: "#8f5bff",
+    marginBottom: "30px",
+    fontSize: "30px",
+  },
+
+  menuBtn: {
+    background: "#1C2A6B",
+    border: "none",
+    color: "white",
+    padding: "16px",
+    borderRadius: "14px",
+    cursor: "pointer",
+    textAlign: "left",
+    fontSize: "16px",
+  },
+
+  logoutBtn: {
+    background: "#ff3b5f",
+    border: "none",
+    color: "white",
+    padding: "16px",
+    borderRadius: "14px",
+    cursor: "pointer",
+    marginTop: "auto",
+  },
+
+  main: {
+    flex: 1,
+    padding: "40px",
+  },
+
+  topCard: {
+    display: "flex",
+    justifyContent: "space-between",
+    background: "#101B50",
+    padding: "30px",
+    borderRadius: "20px",
+    marginBottom: "30px",
+  },
+
+  balanceBox: {
+    background:
+      "linear-gradient(135deg, #8A2BE2, #4169E1)",
+    padding: "20px 40px",
+    borderRadius: "20px",
+    textAlign: "center",
+  },
+
+  games: {
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: "20px",
+  },
+
+  gameCard: {
+    background: "#101B50",
+    padding: "25px",
+    borderRadius: "20px",
+    cursor: "pointer",
+  },
+
+  transaction: {
+    background: "#101B50",
+    marginTop: "30px",
+    padding: "25px",
+    borderRadius: "20px",
+  },
+
+  row: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "15px",
+  },
 };
