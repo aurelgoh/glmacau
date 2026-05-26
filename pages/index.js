@@ -306,5 +306,26 @@ const styles = {
     borderRadius: 24,
     padding: 20,
     color: "#d1d5db",
-  },
+  },},
+
+gamesGrid: {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: "18px",
+  marginTop: "20px",
+},
+
+gameCard: {
+  height: "180px",
+  borderRadius: "22px",
+  padding: "20px",
+  position: "relative",
+},
+
+diceCircle: {
+  width: "75px",
+  height: "75px",
+  borderRadius: "50%",
+},
+
 };
