@@ -39,7 +39,8 @@ export default function GL5Ball() {
   return (
     <div
       style={{
-        background: "#050A2D",
+       background:
+  "linear-gradient(180deg,#050816,#0B1023,#11193A)",
         minHeight: "100vh",
         color: "white",
         paddingBottom: "100px",
@@ -62,7 +63,10 @@ export default function GL5Ball() {
         <button
           onClick={() => window.history.back()}
           style={{
-            background: "#1A235F",
+background: "rgba(26,35,75,0.85)",
+backdropFilter: "blur(10px)",
+border: "1px solid rgba(77,163,255,0.25)",
+boxShadow: "0 0 25px rgba(77,163,255,0.15)",
             border: "none",
             color: "white",
             width: "45px",
