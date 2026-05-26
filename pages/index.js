@@ -278,13 +278,17 @@ const styles = {
     marginBottom: 30,
   },
 
-  gameCard: {
-    borderRadius: 24,
-    padding: 30,
-    position: "relative",
-    textAlign: "center",
-    cursor: "pointer",
-  },
+ gameCard: {
+  height: "170px",
+  borderRadius: "20px",
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  cursor: "pointer",
+  boxShadow: "0 0 20px rgba(255,255,255,0.08)",
+},
 
   badge: {
     position: "absolute",
@@ -328,8 +332,8 @@ const styles = {
 
 gamesGrid: {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-  gap: "18px",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "16px",
   marginTop: "20px",
 },
 
