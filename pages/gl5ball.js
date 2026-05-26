@@ -148,10 +148,17 @@ boxShadow: "0 0 25px rgba(77,163,255,0.15)",
       >
         <div
           style={{
-            background:
-              "linear-gradient(135deg,#40106E,#160D4D)",
-            borderRadius: "20px",
-            padding: "20px",
+background:
+  "linear-gradient(135deg,#40106E,#160D4D)",
+
+boxShadow:
+  "0 0 20px rgba(155,77,255,0.25)",
+
+border:
+  "1px solid rgba(255,255,255,0.08)",
+
+borderRadius: "20px",
+padding: "20px",
           }}
         >
           <p>Waktu Tersisa</p>
@@ -162,6 +169,11 @@ boxShadow: "0 0 25px rgba(77,163,255,0.15)",
           style={{
             background:
               "linear-gradient(135deg,#522200,#3A0B0B)",
+            boxShadow:
+  "0 0 20px rgba(255,80,80,0.2)",
+
+border:
+  "1px solid rgba(255,255,255,0.08)",
             borderRadius: "20px",
             padding: "20px",
           }}
@@ -186,19 +198,26 @@ boxShadow: "0 0 25px rgba(77,163,255,0.15)",
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: "15px",
+              gap: "10px",
             }}
           >
             {categories.map((item, index) => (
               <button
                 key={index}
                 style={{
-                  background: "#1A234B",
-                  border: "2px solid #343C8F",
+                  background: "rgba(26,35,75,0.85)",
+
+backdropFilter: "blur(10px)",
+
+boxShadow:
+  "0 0 20px rgba(77,163,255,0.15)",
+
+  border:
+  "1px solid rgba(255,255,255,0.08)",
                   borderRadius: "22px",
-                  padding: "25px 15px",
+                  padding: "18px 12px",
                   color: "white",
-                  fontSize: "20px",
+                  fontSize: "16px",
                   fontWeight: "bold",
                 }}
               >
