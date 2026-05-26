@@ -1,129 +1,207 @@
+import Link from "next/link";
+
+const games = [
+  { name: "GL5 Ball", color: "#7B2FF7", link: "/gl5ball" },
+  { name: "Tencent 2 Ball", color: "#00C6FF", link: "/tencent2" },
+  { name: "Tencent Car", color: "#FF8C00", link: "/tencentcar" },
+  { name: "Tencent of King", color: "#00FFB3", link: "/king" },
+  { name: "Lucky 5D", color: "#FF4D8D", link: "/lucky5d" },
+  { name: "GL Pick Up", color: "#7F7BFF", link: "/pickup" },
+  { name: "GL Racer", color: "#FF4D4D", link: "/racer" },
+];
+
 export default function Home() {
-  const games = [
-    "GL5 Ball",
-    "Tencent 2 Ball",
-    "Tencent Car",
-    "Tencent of King",
-    "Lucky 5D",
-    "GL Pick Up",
-    "GL Racer",
-  ];
-
   return (
-    <div style={{
-      minHeight:"100vh",
-      background:"linear-gradient(180deg,#030B2B,#071B4D)",
-      color:"white",
-      fontFamily:"sans-serif",
-      padding:"20px",
-      maxWidth:"500px",
-      margin:"0 auto"
-    }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "radial-gradient(circle at top,#091540,#020617 70%)",
+        color: "white",
+        fontFamily: "sans-serif",
+      }}
+    >
+      {/* NAVBAR */}
+      <div
+        style={{
+          width: "100%",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          backdropFilter: "blur(10px)",
+          background: "rgba(5,10,30,0.88)",
+          position: "sticky",
+          top: 0,
+          zIndex: 999,
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1400px",
+            margin: "0 auto",
+            padding: "18px 24px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "14px",
+            }}
+          >
+            <div
+              style={{
+                width: "54px",
+                height: "54px",
+                borderRadius: "16px",
+                background:
+                  "linear-gradient(135deg,#9B4DFF,#4F8CFF)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "28px",
+                fontWeight: "bold",
+                boxShadow: "0 0 25px rgba(155,77,255,0.35)",
+              }}
+            >
+              G
+            </div>
 
-      <div style={{
-        display:"flex",
-        justifyContent:"space-between",
-        alignItems:"center",
-        marginBottom:"20px"
-      }}>
-        <h1 style={{color:"#C86BFF"}}>GL Macau</h1>
-        <div style={{
-          width:"45px",
-          height:"45px",
-          borderRadius:"50%",
-          background:"#A855F7",
-          display:"flex",
-          alignItems:"center",
-          justifyContent:"center"
-        }}>
-          L
+            <h1
+              style={{
+                fontSize: "42px",
+                margin: 0,
+                background:
+                  "linear-gradient(90deg,#C86BFF,#6EA8FF)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              GL Macau
+            </h1>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "18px",
+              fontSize: "20px",
+              color: "#B6C2FF",
+            }}
+          >
+            <span>Home</span>
+            <span>Withdraw</span>
+            <span>Mine</span>
+            <span>Recharge</span>
+            <span>Maps</span>
+          </div>
         </div>
       </div>
 
-      <div style={{
-        background:"linear-gradient(135deg,#5B21B6,#312E81)",
-        borderRadius:"28px",
-        padding:"25px",
-        marginBottom:"20px"
-      }}>
-        <h1 style={{
-          fontSize:"50px",
-          lineHeight:"55px",
-          margin:0
-        }}>
-          Welcome <br/>
-          to <span style={{color:"#E056FD"}}>GL Macau</span>
-        </h1>
-
-        <p style={{opacity:0.8}}>
-          Choose your game and start winning!
-        </p>
-      </div>
-
-      <div style={{
-        display:"grid",
-        gridTemplateColumns:"1fr 1fr",
-        gap:"15px"
-      }}>
-        {games.map((item,index)=>(
-          <a
-            key={index}
-            href={`/game?id=${index}`}
+      {/* CONTENT */}
+      <div
+        style={{
+          maxWidth: "1400px",
+          margin: "0 auto",
+          padding: "40px 24px",
+        }}
+      >
+        {/* HERO */}
+        <div
+          style={{
+            background:
+              "linear-gradient(135deg,#5424A8,#233B8F)",
+            borderRadius: "30px",
+            padding: "50px",
+            marginBottom: "35px",
+          }}
+        >
+          <h1
             style={{
-              textDecoration:"none",
-              color:"white"
+              fontSize: "72px",
+              lineHeight: 1.1,
+              marginBottom: "20px",
             }}
           >
-            <div style={{
-              background:"linear-gradient(135deg,#2E1065,#3B82F6)",
-              borderRadius:"28px",
-              padding:"25px",
-              minHeight:"170px",
-              display:"flex",
-              flexDirection:"column",
-              justifyContent:"center",
-              alignItems:"center"
-            }}>
-              <div style={{
-                width:"90px",
-                height:"90px",
-                borderRadius:"50%",
-                border:"5px solid rgba(255,255,255,0.3)",
-                display:"flex",
-                alignItems:"center",
-                justifyContent:"center",
-                fontSize:"40px",
-                marginBottom:"20px"
-              }}>
-                🎲
+            Welcome to{" "}
+            <span style={{ color: "#D86BFF" }}>
+              GL Macau
+            </span>
+          </h1>
+
+          <p
+            style={{
+              fontSize: "28px",
+              color: "#D8D8D8",
+            }}
+          >
+            Choose your game and start winning!
+          </p>
+        </div>
+
+        {/* GAME GRID */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(260px,1fr))",
+            gap: "26px",
+          }}
+        >
+          {games.map((game, index) => (
+            <Link
+              href={game.link}
+              key={index}
+              style={{ textDecoration: "none" }}
+            >
+              <div
+                style={{
+                  background: `linear-gradient(135deg,${game.color},#3D63FF)`,
+                  borderRadius: "28px",
+                  padding: "40px 20px",
+                  minHeight: "260px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  transition: "0.3s",
+                  boxShadow:
+                    "0 0 30px rgba(0,0,0,0.35)",
+                }}
+              >
+                <div
+                  style={{
+                    width: "120px",
+                    height: "120px",
+                    borderRadius: "999px",
+                    border:
+                      "6px solid rgba(255,255,255,0.35)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "58px",
+                    marginBottom: "28px",
+                  }}
+                >
+                  🎲
+                </div>
+
+                <h2
+                  style={{
+                    fontSize: "38px",
+                    textAlign: "center",
+                    margin: 0,
+                    color: "white",
+                  }}
+                >
+                  {game.name}
+                </h2>
               </div>
-
-              <h2 style={{
-                textAlign:"center",
-                margin:0
-              }}>
-                {item}
-              </h2>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      <div style={{
-        position:"fixed",
-        bottom:0,
-        left:0,
-        right:0,
-        background:"#020617",
-        borderTop:"1px solid rgba(255,255,255,0.1)",
-        display:"flex",
-        justifyContent:"space-around",
-        padding:"14px"
-      }}>
-        <a href="/" style={{color:"#C86BFF"}}>Home</a>
-        <a href="/withdraw" style={{color:"white"}}>Withdraw</a>
-        <a href="/mine" style={{color:"white"}}>Mine</a>
-        <a href="/maps" style={{color:"white"}}>Maps</a>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
