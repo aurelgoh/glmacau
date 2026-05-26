@@ -6,45 +6,38 @@ export default function Home() {
   const games = [
     {
       title: "GL5 Ball",
-      color: "linear-gradient(135deg,#662D91,#9B4DFF)",
+      color: "linear-gradient(135deg,#662D91,#8E44FF)",
       number: 1,
-      border: "#d16cff",
     },
     {
       title: "Tencent 2 Ball",
-      color: "linear-gradient(135deg,#2455ff,#46c0ff)",
+      color: "linear-gradient(135deg,#1B4FFF,#34C3FF)",
       number: 2,
-      border: "#34dcff",
     },
     {
       title: "Tencent Car",
-      color: "linear-gradient(135deg,#8f4300,#ff9300)",
+      color: "linear-gradient(135deg,#8A3D00,#FF8C1A)",
       number: 3,
-      border: "#ff9800",
     },
     {
       title: "Tencent of King",
-      color: "linear-gradient(135deg,#00795c,#00d8a0)",
+      color: "linear-gradient(135deg,#00664D,#00D49C)",
       number: 4,
-      border: "#1affc6",
     },
     {
       title: "Lucky 5D",
-      color: "linear-gradient(135deg,#b1005c,#ff4fa2)",
+      color: "linear-gradient(135deg,#8B004B,#FF4F9D)",
       number: 5,
-      border: "#ff5fa2",
     },
     {
       title: "GL Pick Up",
-      color: "linear-gradient(135deg,#4b3cff,#8f7cff)",
+      color: "linear-gradient(135deg,#4136D6,#8B7CFF)",
       number: 6,
-      border: "#8a7cff",
     },
     {
       title: "GL Racer",
-      color: "linear-gradient(135deg,#9e1515,#ff4747)",
+      color: "linear-gradient(135deg,#6E1010,#FF4A4A)",
       number: 7,
-      border: "#ff5b5b",
     },
   ];
 
@@ -52,26 +45,45 @@ export default function Home() {
     <div style={styles.page}>
       {/* NAVBAR */}
       <div style={styles.navbar}>
-        <div style={styles.logoSection}>
+        <div style={styles.logoWrap}>
           <div style={styles.logo}>GL</div>
           <h2 style={styles.logoText}>GL Macau</h2>
         </div>
 
-        <div style={styles.balanceBox}>💵 $0</div>
-      </div>
-
-      {/* HERO */}
-      <div style={styles.hero}>
-        <div>
-          <h1 style={styles.heroTitle}>
-            Welcome to <span style={{ color: "#b15eff" }}>GL Macau</span>
-          </h1>
-          <p style={styles.heroText}>
-            Choose your game and start winning!
-          </p>
+        <div style={styles.menu}>
+          {["Home", "Withdraw", "Mine", "Recharge", "Maps"].map((item) => (
+            <button
+              key={item}
+              onClick={() => setActive(item)}
+              style={{
+                ...styles.menuBtn,
+                background:
+                  active === item
+                    ? "rgba(142,68,255,0.3)"
+                    : "transparent",
+              }}
+            >
+              {item}
+            </button>
+          ))}
         </div>
 
-        <div style={styles.heroIcon}>🎮</div>
+        <div style={styles.profileWrap}>
+          <div style={styles.balance}>💵 $0</div>
+          <div style={styles.avatar}>L</div>
+        </div>
+      </div>
+
+      {/* WELCOME */}
+      <div style={styles.banner}>
+        <div>
+          <h1 style={styles.title}>
+            Welcome to <span style={styles.glText}>GL Macau</span>
+          </h1>
+          <p>Choose your game and start winning!</p>
+        </div>
+
+        <div style={styles.controller}>🎮</div>
       </div>
 
       {/* GAME LIST */}
@@ -79,6 +91,7 @@ export default function Home() {
         {games.map((game) => (
           <div
             key={game.title}
+            onClick={() => alert(`${game.title} clicked`)}
             style={{
               ...styles.gameCard,
               background: game.color,
@@ -91,7 +104,20 @@ export default function Home() {
             <div
               style={{
                 ...styles.diceCircle,
-                border: `4px solid ${game.border}`,
+                borderColor:
+                  game.number === 1
+                    ? "#d16cff"
+                    : game.number === 2
+                    ? "#34cdff"
+                    : game.number === 3
+                    ? "#ff9800"
+                    : game.number === 4
+                    ? "#1affc6"
+                    : game.number === 5
+                    ? "#ff5fa2"
+                    : game.number === 6
+                    ? "#8a7cff"
+                    : "#ff5b5b",
               }}
             >
               🎲
@@ -104,27 +130,37 @@ export default function Home() {
         ))}
       </div>
 
-      {/* MENU */}
+      {/* MENU BOX */}
       <div style={styles.bottomGrid}>
-        <div style={styles.bottomCard}>
-          💳
-          <p>Withdraw</p>
-        </div>
+        {[
+          "Withdraw",
+          "Mine",
+          "Customer Service",
+          "Notify",
+        ].map((item) => (
+          <div
+            key={item}
+            onClick={() => alert(item)}
+            style={styles.bottomCard}
+          >
+            <div style={styles.bottomIcon}>
+              {item === "Withdraw"
+                ? "💳"
+                : item === "Mine"
+                ? "👤"
+                : item === "Customer Service"
+                ? "💬"
+                : "🔔"}
+            </div>
 
-        <div style={styles.bottomCard}>
-          👤
-          <p>Mine</p>
-        </div>
+            <h3>{item}</h3>
+          </div>
+        ))}
+      </div>
 
-        <div style={styles.bottomCard}>
-          💬
-          <p>Customer Service</p>
-        </div>
-
-        <div style={styles.bottomCard}>
-          🔔
-          <p>Notify</p>
-        </div>
+      <div style={styles.footer}>
+        🔔 Enjoy exciting games and win big.
+        Recharge now to start playing!
       </div>
     </div>
   );
@@ -143,132 +179,175 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "25px",
     flexWrap: "wrap",
-    gap: "12px",
+    gap: "15px",
+    marginBottom: "20px",
   },
 
-  logoSection: {
+  logoWrap: {
     display: "flex",
     alignItems: "center",
     gap: "12px",
   },
 
   logo: {
-    width: "55px",
-    height: "55px",
-    borderRadius: "18px",
-    background: "linear-gradient(135deg,#6f2cff,#b15eff)",
+    width: "60px",
+    height: "60px",
+    borderRadius: "20px",
+    background:
+      "linear-gradient(135deg,#7b2ff7,#b14cff)",
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
     fontWeight: "bold",
-    fontSize: "24px",
+    fontSize: "22px",
   },
 
   logoText: {
-    color: "#c26cff",
-    margin: 0,
+    color: "#cc77ff",
   },
 
-  balanceBox: {
-    background: "#009d62",
+  menu: {
+    display: "flex",
+    gap: "10px",
+    flexWrap: "wrap",
+  },
+
+  menuBtn: {
+    border: "none",
+    color: "white",
     padding: "12px 18px",
-    borderRadius: "18px",
+    borderRadius: "14px",
+    cursor: "pointer",
+  },
+
+  profileWrap: {
+    display: "flex",
+    gap: "12px",
+    alignItems: "center",
+  },
+
+  balance: {
+    background: "#0c6a43",
+    padding: "12px 16px",
+    borderRadius: "16px",
     fontWeight: "bold",
   },
 
-  hero: {
+  avatar: {
+    width: "50px",
+    height: "50px",
+    borderRadius: "50%",
+    background: "#8E44FF",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    fontWeight: "bold",
+  },
+
+  banner: {
     background:
-      "linear-gradient(135deg,#24156f,#26398d)",
-    borderRadius: "30px",
+      "linear-gradient(135deg,#2d1b73,#243b84)",
+    borderRadius: "35px",
     padding: "35px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: "30px",
-    flexWrap: "wrap",
-    gap: "20px",
   },
 
-  heroTitle: {
+  title: {
     fontSize: "48px",
-    marginBottom: "10px",
   },
 
-  heroText: {
-    color: "#ddd",
+  glText: {
+    color: "#bb6cff",
   },
 
-  heroIcon: {
-    fontSize: "70px",
+  controller: {
+    fontSize: "60px",
   },
 
   gamesGrid: {
     display: "grid",
     gridTemplateColumns:
-      "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: "18px",
+      "repeat(auto-fit, minmax(180px,1fr))",
+    gap: "20px",
   },
 
   gameCard: {
     borderRadius: "28px",
-    padding: "24px",
-    textAlign: "center",
-    cursor: "pointer",
+    padding: "25px",
+    position: "relative",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    position: "relative",
-    minHeight: "220px",
     justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
+    minHeight: "220px",
   },
 
   diceCircle: {
     width: "90px",
     height: "90px",
     borderRadius: "50%",
+    border: "4px solid",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     fontSize: "42px",
     background: "rgba(0,0,0,0.2)",
-    marginBottom: "18px",
+    marginBottom: "20px",
   },
 
   gameTitle: {
     fontWeight: "bold",
-    fontSize: "28px",
+    fontSize: "24px",
+    textAlign: "center",
   },
 
   numberBadge: {
     position: "absolute",
-    top: "14px",
-    right: "14px",
-    width: "36px",
-    height: "36px",
+    top: "15px",
+    right: "15px",
+    width: "38px",
+    height: "38px",
     borderRadius: "12px",
-    background: "rgba(255,255,255,0.25)",
+    background: "rgba(255,255,255,0.2)",
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
     fontWeight: "bold",
   },
 
   bottomGrid: {
+    marginTop: "25px",
     display: "grid",
     gridTemplateColumns:
-      "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: "18px",
-    marginTop: "25px",
+      "repeat(auto-fit, minmax(180px,1fr))",
+    gap: "20px",
   },
 
   bottomCard: {
-    background: "#101c62",
-    borderRadius: "25px",
-    padding: "35px",
-    textAlign: "center",
-    fontSize: "40px",
-    fontWeight: "bold",
+    background: "#101c5d",
+    borderRadius: "30px",
+    minHeight: "150px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
+  },
+
+  bottomIcon: {
+    fontSize: "42px",
+    marginBottom: "10px",
+  },
+
+  footer: {
+    marginTop: "25px",
+    background: "#2a2375",
+    padding: "18px",
+    borderRadius: "20px",
   },
 };
