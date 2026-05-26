@@ -6,38 +6,45 @@ export default function Home() {
   const games = [
     {
       title: "GL5 Ball",
-      color: "linear-gradient(135deg,#662D91,#8E44FF)",
+      color: "linear-gradient(135deg,#662D91,#9B4DFF)",
       number: 1,
+      border: "#d16cff",
     },
     {
       title: "Tencent 2 Ball",
-      color: "linear-gradient(135deg,#1B4FFF,#34C3FF)",
+      color: "linear-gradient(135deg,#2455ff,#46c0ff)",
       number: 2,
+      border: "#34dcff",
     },
     {
       title: "Tencent Car",
-      color: "linear-gradient(135deg,#8A3D00,#FF8C1A)",
+      color: "linear-gradient(135deg,#8f4300,#ff9300)",
       number: 3,
+      border: "#ff9800",
     },
     {
       title: "Tencent of King",
-      color: "linear-gradient(135deg,#00664D,#00D49C)",
+      color: "linear-gradient(135deg,#00795c,#00d8a0)",
       number: 4,
+      border: "#1affc6",
     },
     {
       title: "Lucky 5D",
-      color: "linear-gradient(135deg,#8B004B,#FF4F9D)",
+      color: "linear-gradient(135deg,#b1005c,#ff4fa2)",
       number: 5,
+      border: "#ff5fa2",
     },
     {
       title: "GL Pick Up",
-      color: "linear-gradient(135deg,#4136D6,#8B7CFF)",
+      color: "linear-gradient(135deg,#4b3cff,#8f7cff)",
       number: 6,
+      border: "#8a7cff",
     },
     {
       title: "GL Racer",
-      color: "linear-gradient(135deg,#6E1010,#FF4A4A)",
+      color: "linear-gradient(135deg,#9e1515,#ff4747)",
       number: 7,
+      border: "#ff5b5b",
     },
   ];
 
@@ -45,44 +52,21 @@ export default function Home() {
     <div style={styles.page}>
       {/* NAVBAR */}
       <div style={styles.navbar}>
-        <div style={styles.logoArea}>
+        <div style={styles.logoSection}>
           <div style={styles.logo}>GL</div>
           <h2 style={styles.logoText}>GL Macau</h2>
         </div>
 
-        <div style={styles.menu}>
-          {["Home", "Withdraw", "Mine", "Recharge", "Maps"].map(
-            (item) => (
-              <button
-                key={item}
-                onClick={() => setActive(item)}
-                style={{
-                  ...styles.menuBtn,
-                  background:
-                    active === item
-                      ? "rgba(153,90,255,0.25)"
-                      : "transparent",
-                }}
-              >
-                {item}
-              </button>
-            )
-          )}
-        </div>
-
-        <div style={styles.rightMenu}>
-          <div style={styles.balance}>💵 $0</div>
-          <div style={styles.profile}>L</div>
-        </div>
+        <div style={styles.balanceBox}>💵 $0</div>
       </div>
 
       {/* HERO */}
       <div style={styles.hero}>
         <div>
-          <h1 style={styles.title}>
-            Welcome to <span style={styles.purple}>GL Macau</span>
+          <h1 style={styles.heroTitle}>
+            Welcome to <span style={{ color: "#b15eff" }}>GL Macau</span>
           </h1>
-          <p style={styles.subtitle}>
+          <p style={styles.heroText}>
             Choose your game and start winning!
           </p>
         </div>
@@ -90,7 +74,7 @@ export default function Home() {
         <div style={styles.heroIcon}>🎮</div>
       </div>
 
-      {/* GAME GRID */}
+      {/* GAME LIST */}
       <div style={styles.gamesGrid}>
         {games.map((game) => (
           <div
@@ -107,20 +91,7 @@ export default function Home() {
             <div
               style={{
                 ...styles.diceCircle,
-                borderColor:
-                  game.number === 1
-                    ? "#d16cff"
-                    : game.number === 2
-                    ? "#34c3ff"
-                    : game.number === 3
-                    ? "#ff9800"
-                    : game.number === 4
-                    ? "#1affc6"
-                    : game.number === 5
-                    ? "#ff5fa2"
-                    : game.number === 6
-                    ? "#8a7cff"
-                    : "#ff5b5b",
+                border: `4px solid ${game.border}`,
               }}
             >
               🎲
@@ -133,32 +104,27 @@ export default function Home() {
         ))}
       </div>
 
-      {/* MENU BOX */}
+      {/* MENU */}
       <div style={styles.bottomGrid}>
         <div style={styles.bottomCard}>
-          <div style={styles.bottomIcon}>💳</div>
-          <h3>Withdraw</h3>
+          💳
+          <p>Withdraw</p>
         </div>
 
         <div style={styles.bottomCard}>
-          <div style={styles.bottomIcon}>👤</div>
-          <h3>Mine</h3>
+          👤
+          <p>Mine</p>
         </div>
 
         <div style={styles.bottomCard}>
-          <div style={styles.bottomIcon}>💬</div>
-          <h3>Customer Service</h3>
+          💬
+          <p>Customer Service</p>
         </div>
 
         <div style={styles.bottomCard}>
-          <div style={styles.bottomIcon}>🔔</div>
-          <h3>Notify</h3>
+          🔔
+          <p>Notify</p>
         </div>
-      </div>
-
-      <div style={styles.notice}>
-        🔔 Enjoy exciting games and win big.
-        Recharge now to start playing!
       </div>
     </div>
   );
@@ -166,10 +132,10 @@ export default function Home() {
 
 const styles = {
   page: {
-    minHeight: "100vh",
     background: "#040b2d",
+    minHeight: "100vh",
     color: "white",
-    padding: "30px 40px",
+    padding: "20px",
     fontFamily: "Arial",
   },
 
@@ -177,97 +143,61 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottom: "1px solid rgba(255,255,255,0.08)",
-    paddingBottom: "20px",
+    marginBottom: "25px",
+    flexWrap: "wrap",
+    gap: "12px",
   },
 
-  logoArea: {
+  logoSection: {
     display: "flex",
     alignItems: "center",
-    gap: "15px",
+    gap: "12px",
   },
 
   logo: {
-    width: "60px",
-    height: "60px",
+    width: "55px",
+    height: "55px",
     borderRadius: "18px",
-    background:
-      "linear-gradient(135deg,#6d28d9,#a855f7)",
+    background: "linear-gradient(135deg,#6f2cff,#b15eff)",
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     fontWeight: "bold",
-    fontSize: "28px",
-    boxShadow: "0 0 30px rgba(168,85,247,.5)",
+    fontSize: "24px",
   },
 
   logoText: {
-    color: "#c084fc",
+    color: "#c26cff",
+    margin: 0,
   },
 
-  menu: {
-    display: "flex",
-    gap: "15px",
-  },
-
-  menuBtn: {
-    border: "none",
-    color: "white",
+  balanceBox: {
+    background: "#009d62",
     padding: "12px 18px",
-    borderRadius: "14px",
-    cursor: "pointer",
-    fontSize: "15px",
-  },
-
-  rightMenu: {
-    display: "flex",
-    gap: "15px",
-    alignItems: "center",
-  },
-
-  balance: {
-    background: "#065f46",
-    padding: "12px 20px",
-    borderRadius: "20px",
+    borderRadius: "18px",
     fontWeight: "bold",
-  },
-
-  profile: {
-    width: "50px",
-    height: "50px",
-    borderRadius: "50%",
-    background:
-      "linear-gradient(135deg,#7c3aed,#8b5cf6)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontWeight: "bold",
-    fontSize: "22px",
   },
 
   hero: {
-    marginTop: "35px",
     background:
-      "linear-gradient(135deg,#26186d,#223a89)",
-    borderRadius: "35px",
-    padding: "50px",
+      "linear-gradient(135deg,#24156f,#26398d)",
+    borderRadius: "30px",
+    padding: "35px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: "30px",
+    flexWrap: "wrap",
+    gap: "20px",
   },
 
-  title: {
-    fontSize: "58px",
+  heroTitle: {
+    fontSize: "48px",
     marginBottom: "10px",
   },
 
-  purple: {
-    color: "#a855f7",
-  },
-
-  subtitle: {
-    fontSize: "20px",
-    opacity: 0.9,
+  heroText: {
+    color: "#ddd",
   },
 
   heroIcon: {
@@ -276,82 +206,69 @@ const styles = {
 
   gamesGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(4,1fr)",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(180px, 1fr))",
     gap: "18px",
-    marginTop: "35px",
   },
 
   gameCard: {
-    height: "220px",
     borderRadius: "28px",
-    position: "relative",
+    padding: "24px",
+    textAlign: "center",
+    cursor: "pointer",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
     alignItems: "center",
-    cursor: "pointer",
+    position: "relative",
+    minHeight: "220px",
+    justifyContent: "center",
   },
 
   diceCircle: {
-    width: "95px",
-    height: "95px",
+    width: "90px",
+    height: "90px",
     borderRadius: "50%",
-    border: "4px solid",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "rgba(0,0,0,.2)",
-    fontSize: "40px",
-    marginBottom: "20px",
+    fontSize: "42px",
+    background: "rgba(0,0,0,0.2)",
+    marginBottom: "18px",
   },
 
   gameTitle: {
-    fontSize: "20px",
     fontWeight: "bold",
+    fontSize: "28px",
   },
 
   numberBadge: {
     position: "absolute",
     top: "14px",
     right: "14px",
-    width: "34px",
-    height: "34px",
+    width: "36px",
+    height: "36px",
     borderRadius: "12px",
-    background: "rgba(255,255,255,.25)",
+    background: "rgba(255,255,255,0.25)",
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     fontWeight: "bold",
   },
 
   bottomGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(4,1fr)",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(180px, 1fr))",
     gap: "18px",
-    marginTop: "30px",
+    marginTop: "25px",
   },
 
   bottomCard: {
-    background: "#10195a",
+    background: "#101c62",
     borderRadius: "25px",
-    height: "170px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  bottomIcon: {
+    padding: "35px",
+    textAlign: "center",
     fontSize: "40px",
-    marginBottom: "10px",
-  },
-
-  notice: {
-    marginTop: "25px",
-    background:
-      "linear-gradient(90deg,#32216f,#223a89)",
-    padding: "20px",
-    borderRadius: "25px",
-    fontSize: "18px",
+    fontWeight: "bold",
   },
 };
