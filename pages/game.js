@@ -3,9 +3,14 @@ import { useRouter } from "next/router";
 export default function GamePage() {
   const router = useRouter();
 
-  const { name } = router.query;
-
-  const gameName = name || "GL5 Ball";
+  const gameName =
+    typeof window !== "undefined"
+      ? decodeURIComponent(
+          new URLSearchParams(window.location.search).get(
+            "name"
+          ) || "GL5 Ball"
+        )
+      : "GL5 Ball";
 
   const categories = [
     "Kecil",
@@ -25,16 +30,22 @@ export default function GamePage() {
   const bannerMap = {
     "GL5 Ball":
       "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200",
+
     "Tencent 2 Ball":
       "https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1200",
+
     "Tencent Car":
       "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200",
+
     "Tencent of King":
       "https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=1200",
+
     "Lucky 5D":
       "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200",
+
     "GL Pick Up":
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200",
+
     "GL Racer":
       "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200",
   };
@@ -44,7 +55,7 @@ export default function GamePage() {
       <style jsx global>{`
         body {
           margin: 0;
-          background: #e5e5e5;
+          background: #020617;
           font-family: Arial;
         }
 
@@ -56,26 +67,28 @@ export default function GamePage() {
       <div
         style={{
           minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          background: "#e5e5e5",
+          background:
+            "linear-gradient(to bottom,#020617,#020b3f)",
+          color: "white",
         }}
       >
+        {/* DESKTOP CONTAINER */}
         <div
           style={{
             width: "100%",
-            maxWidth: "575px",
-            background: "#020b3f",
-            minHeight: "100vh",
-            color: "white",
+            maxWidth: 1500,
+            margin: "0 auto",
+            padding: 20,
           }}
         >
-          {/* HEADER */}
+          {/* HEADER IMAGE */}
           <div
             style={{
               position: "relative",
-              height: 320,
+              height: 280,
+              borderRadius: 25,
               overflow: "hidden",
+              marginBottom: 20,
             }}
           >
             <img
@@ -95,7 +108,7 @@ export default function GamePage() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to bottom,rgba(0,0,0,.2),rgba(73,0,130,.5))",
+                  "linear-gradient(to bottom,rgba(0,0,0,.3),rgba(0,0,0,.6))",
               }}
             />
 
@@ -105,12 +118,12 @@ export default function GamePage() {
                 position: "absolute",
                 top: 20,
                 left: 20,
-                background: "#111827",
-                color: "white",
-                border: "none",
                 width: 50,
                 height: 50,
-                borderRadius: 12,
+                borderRadius: 14,
+                border: "none",
+                background: "#111827",
+                color: "white",
                 fontSize: 24,
                 cursor: "pointer",
               }}
@@ -129,8 +142,8 @@ export default function GamePage() {
             >
               <h1
                 style={{
-                  fontSize: 48,
-                  marginBottom: 10,
+                  margin: 0,
+                  fontSize: 50,
                 }}
               >
                 {gameName}
@@ -138,9 +151,9 @@ export default function GamePage() {
 
               <div
                 style={{
+                  marginTop: 10,
                   color: "#ddd",
                   fontSize: 18,
-                  marginBottom: 20,
                 }}
               >
                 Period:20260527-077 • WIB
@@ -148,12 +161,16 @@ export default function GamePage() {
 
               <div
                 style={{
+                  marginTop: 20,
                   background: "#005C3B",
                   borderRadius: 18,
                   padding: 18,
                   fontSize: 30,
                   fontWeight: "bold",
                   color: "#00FF88",
+                  maxWidth: 1300,
+                  marginLeft: "auto",
+                  marginRight: "auto",
                 }}
               >
                 Saldo: $0
@@ -166,24 +183,32 @@ export default function GamePage() {
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: 15,
-              padding: 20,
+              gap: 20,
+              marginBottom: 20,
             }}
           >
             <div
               style={{
-                background: "#3A1175",
+                background:
+                  "linear-gradient(135deg,#2e1065,#111827)",
                 borderRadius: 24,
-                padding: 25,
+                padding: 30,
               }}
             >
-              <div>Waktu Tersisa</div>
+              <div
+                style={{
+                  color: "#ddd",
+                  fontSize: 20,
+                }}
+              >
+                Waktu Tersisa
+              </div>
 
               <div
                 style={{
-                  fontSize: 34,
+                  marginTop: 15,
+                  fontSize: 50,
                   fontWeight: "bold",
-                  marginTop: 20,
                 }}
               >
                 02:41
@@ -192,31 +217,45 @@ export default function GamePage() {
 
             <div
               style={{
-                background: "#5A2208",
+                background:
+                  "linear-gradient(135deg,#5A2208,#111827)",
                 borderRadius: 24,
-                padding: 25,
+                padding: 30,
               }}
             >
-              <div>Odds K/B</div>
+              <div
+                style={{
+                  color: "#ddd",
+                  fontSize: 20,
+                }}
+              >
+                Odds K/B
+              </div>
 
               <div
                 style={{
-                  fontSize: 34,
+                  marginTop: 15,
+                  fontSize: 50,
                   fontWeight: "bold",
-                  marginTop: 20,
                 }}
               >
-                1.98x
+                1.98x / 1.98x
               </div>
             </div>
           </div>
 
-          {/* KATEGORI */}
-          <div style={{ padding: 20 }}>
+          {/* CATEGORY */}
+          <div
+            style={{
+              background: "rgba(0,0,0,.2)",
+              borderRadius: 24,
+              padding: 30,
+            }}
+          >
             <h2
               style={{
-                fontSize: 28,
-                marginBottom: 30,
+                marginTop: 0,
+                fontSize: 42,
               }}
             >
               Pilih Kategori
@@ -224,26 +263,37 @@ export default function GamePage() {
 
             <div
               style={{
+                color: "#aaa",
+                marginBottom: 30,
+                fontSize: 18,
+              }}
+            >
+              Pilih satu atau lebih kategori taruhan
+            </div>
+
+            <div
+              style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 18,
+                gridTemplateColumns:
+                  "repeat(2,minmax(0,1fr))",
+                gap: 20,
               }}
             >
               {categories.map((item, i) => (
                 <div
                   key={i}
                   style={{
-                    background: "#14204E",
-                    borderRadius: 24,
-                    padding: "40px 20px",
+                    background: "#1E293B",
+                    borderRadius: 22,
+                    padding: "45px 20px",
                     textAlign: "center",
                     border:
-                      "1px solid rgba(255,255,255,0.1)",
+                      "1px solid rgba(255,255,255,.1)",
                   }}
                 >
                   <div
                     style={{
-                      fontSize: 28,
+                      fontSize: 40,
                       fontWeight: "bold",
                       marginBottom: 20,
                     }}
@@ -255,9 +305,9 @@ export default function GamePage() {
                     style={{
                       display: "inline-block",
                       background: "#9C7300",
-                      padding: "8px 18px",
+                      padding: "10px 20px",
                       borderRadius: 999,
-                      fontSize: 18,
+                      fontSize: 20,
                     }}
                   >
                     1.98x
