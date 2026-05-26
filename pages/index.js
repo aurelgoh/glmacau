@@ -91,7 +91,13 @@ export default function Home() {
         {games.map((game) => (
           <div
             key={game.title}
-            onClick={() => alert(`${game.title} clicked`)}
+onClick={() =>
+  window.location.href =
+    game.title === "GL5 Ball"
+      ? "/gl5ball"
+      : "#"
+}
+>
             style={{
               ...styles.gameCard,
               background: game.color,
@@ -140,7 +146,13 @@ export default function Home() {
         ].map((item) => (
           <div
             key={item}
-            onClick={() => alert(item)}
+onClick={() =>
+  window.location.href =
+    item === "Withdraw"
+      ? "/withdraw"
+      : "#"
+}
+>
             style={styles.bottomCard}
           >
             <div style={styles.bottomIcon}>
