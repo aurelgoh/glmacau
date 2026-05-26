@@ -1,284 +1,294 @@
-import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function GL5Ball() {
-  const [time, setTime] = useState(240);
+  const router = useRouter();
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((prev) => (prev > 0 ? prev - 1 : 240));
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (seconds) => {
-    const min = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-    return `${min.toString().padStart(2, "0")}:${sec
-      .toString()
-      .padStart(2, "0")}`;
-  };
-
-  const categories = [
-    "Kecil",
-    "Besar",
-    "Ganjil",
-    "Genap",
-    "Dragon",
-    "Tiger",
-    "Tengah",
-    "Pinggir",
-    "Kombinasi",
-    "Tunggal",
-    "Jumbo",
-    "Mini",
-    "Super",
-    "Normal",
+  const games = [
+    {
+      name: "GL5 Ball",
+      color: "linear-gradient(135deg,#7B2FFF,#4D3DFF)",
+      glow: "0 0 25px rgba(123,47,255,0.35)",
+      id: 1,
+    },
+    {
+      name: "Tencent 2 Ball",
+      color: "linear-gradient(135deg,#1E63FF,#4CC9FF)",
+      glow: "0 0 25px rgba(76,201,255,0.35)",
+      id: 2,
+    },
+    {
+      name: "Tencent Car",
+      color: "linear-gradient(135deg,#FF7A00,#FF9F1C)",
+      glow: "0 0 25px rgba(255,122,0,0.35)",
+      id: 3,
+    },
+    {
+      name: "Tencent of King",
+      color: "linear-gradient(135deg,#00A86B,#24D6A5)",
+      glow: "0 0 25px rgba(36,214,165,0.35)",
+      id: 4,
+    },
+    {
+      name: "Lucky 5D",
+      color: "linear-gradient(135deg,#FF2D8D,#FF4FA3)",
+      glow: "0 0 25px rgba(255,45,141,0.35)",
+      id: 5,
+    },
+    {
+      name: "GL Pick Up",
+      color: "linear-gradient(135deg,#6C63FF,#8A7CFF)",
+      glow: "0 0 25px rgba(138,124,255,0.35)",
+      id: 6,
+    },
+    {
+      name: "GL Racer",
+      color: "linear-gradient(135deg,#FF3131,#FF4B4B)",
+      glow: "0 0 25px rgba(255,49,49,0.35)",
+      id: 7,
+    },
   ];
 
   return (
     <div
       style={{
-       background:
-  "linear-gradient(180deg,#050816,#0B1023,#11193A)",
         minHeight: "100vh",
+        background:
+          "linear-gradient(180deg,#020617,#071028,#0B1736)",
         color: "white",
-        paddingBottom: "100px",
+        fontFamily: "sans-serif",
+        paddingBottom: "120px",
       }}
     >
-      {/* Header */}
+      {/* HEADER */}
       <div
         style={{
           position: "sticky",
           top: 0,
-          background: "#08103D",
-          padding: "15px",
+          zIndex: 999,
+          backdropFilter: "blur(12px)",
+          background: "rgba(5,10,30,0.88)",
+          borderBottom:
+            "1px solid rgba(255,255,255,0.05)",
+          padding: "18px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          zIndex: 999,
-          borderBottom: "1px solid #1a235f",
         }}
       >
-        <button
-          onClick={() => window.history.back()}
+        <div
           style={{
-background: "rgba(26,35,75,0.85)",
-backdropFilter: "blur(10px)",
-border: "1px solid rgba(77,163,255,0.25)",
-boxShadow: "0 0 25px rgba(77,163,255,0.15)",
-            border: "none",
-            color: "white",
-            width: "45px",
-            height: "45px",
-            borderRadius: "12px",
-            fontSize: "20px",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
           }}
         >
-          ←
-        </button>
+          <div
+            style={{
+              width: "58px",
+              height: "58px",
+              borderRadius: "18px",
+              background:
+                "linear-gradient(135deg,#7B2FFF,#5EA8FF)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: "bold",
+              fontSize: "22px",
+              boxShadow:
+                "0 0 20px rgba(123,47,255,0.35)",
+            }}
+          >
+            GL
+          </div>
 
-        <h2 style={{ margin: 0 }}>GL 5 Ball</h2>
+          <h1
+            style={{
+              margin: 0,
+              fontSize: "22px",
+              color: "#D36BFF",
+            }}
+          >
+            GL Macau
+          </h1>
+        </div>
 
         <div
           style={{
-            width: "45px",
-            height: "45px",
-            borderRadius: "12px",
-            background: "#1A235F",
+            width: "55px",
+            height: "55px",
+            borderRadius: "50%",
+            background:
+              "linear-gradient(135deg,#7B2FFF,#D36BFF)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            fontWeight: "bold",
+            fontSize: "24px",
+            boxShadow:
+              "0 0 20px rgba(211,107,255,0.4)",
           }}
         >
-          ↻
+          L
         </div>
       </div>
 
-      {/* Banner */}
-      <div
-        style={{
-          margin: "15px",
-          borderRadius: "20px",
-          overflow: "hidden",
-          background:
-            "linear-gradient(135deg,#9B4DFF,#2E3192)",
-        }}
-      >
-        <img
-          src="https://i.imgur.com/fj2rA6Y.png"
+      {/* WELCOME */}
+      <div style={{ padding: "18px" }}>
+        <div
           style={{
-            width: "100%",
-            height: "180px",
-            objectFit: "cover",
+            borderRadius: "30px",
+            padding: "40px 30px",
+            background:
+              "linear-gradient(135deg,#5520B5,#3A2D91)",
+            boxShadow:
+              "0 0 30px rgba(123,47,255,0.25)",
           }}
-        />
-
-        <div style={{ padding: "15px" }}>
-          <h1 style={{ margin: 0 }}>GL 5 Ball</h1>
-
-          <p style={{ opacity: 0.8 }}>
-            Period: 20260525-191 • WIB
-          </p>
-
-          <div
+        >
+          <h1
             style={{
-              background: "#064E3B",
-              padding: "15px",
-              borderRadius: "16px",
-              marginTop: "10px",
-              fontSize: "28px",
+              fontSize: "64px",
+              lineHeight: 1,
+              margin: 0,
               fontWeight: "bold",
-              textAlign: "center",
             }}
           >
-            Saldo: $0
-          </div>
+            Welcome
+            <br />
+            to{" "}
+            <span style={{ color: "#E056FD" }}>
+              GL
+            </span>
+            <br />
+            <span style={{ color: "#E056FD" }}>
+              Macau
+            </span>
+          </h1>
+
+          <p
+            style={{
+              marginTop: "30px",
+              fontSize: "18px",
+              opacity: 0.8,
+            }}
+          >
+            Choose your game and start winning!
+          </p>
         </div>
       </div>
 
-      {/* Time + Odds */}
+      {/* GAME GRID */}
       <div
         style={{
+          padding: "0 18px",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: "15px",
-          padding: "0 15px",
+          gap: "16px",
         }}
       >
-        <div
-          style={{
-background:
-  "linear-gradient(135deg,#40106E,#160D4D)",
-
-boxShadow:
-  "0 0 20px rgba(155,77,255,0.25)",
-
-border:
-  "1px solid rgba(255,255,255,0.08)",
-
-borderRadius: "20px",
-padding: "20px",
-          }}
-        >
-          <p>Waktu Tersisa</p>
-          <h1>{formatTime(time)}</h1>
-        </div>
-
-        <div
-          style={{
-            background:
-              "linear-gradient(135deg,#522200,#3A0B0B)",
-            boxShadow:
-  "0 0 20px rgba(255,80,80,0.2)",
-
-border:
-  "1px solid rgba(255,255,255,0.08)",
-            borderRadius: "20px",
-            padding: "20px",
-          }}
-        >
-          <p>Odds K/B</p>
-          <h1>1.98x</h1>
-        </div>
-      </div>
-
-      {/* Kategori */}
-      <div style={{ padding: "15px" }}>
-        <div
-          style={{
-            background: "#0B123E",
-            borderRadius: "24px",
-            padding: "20px",
-          }}
-        >
-          <h2>Pilih Kategori</h2>
-
+        {games.map((game) => (
           <div
+            key={game.id}
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "10px",
+              background: game.color,
+              borderRadius: "32px",
+              padding: "25px 15px",
+              position: "relative",
+              boxShadow: game.glow,
+              border:
+                "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            {categories.map((item, index) => (
-              <button
-                key={index}
-                style={{
-                  background: "rgba(26,35,75,0.85)",
+            <div
+              style={{
+                position: "absolute",
+                top: "15px",
+                right: "15px",
+                width: "48px",
+                height: "48px",
+                borderRadius: "16px",
+                background: "rgba(255,255,255,0.2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontWeight: "bold",
+                fontSize: "20px",
+              }}
+            >
+              {game.id}
+            </div>
 
-backdropFilter: "blur(10px)",
+            <div
+              style={{
+                width: "120px",
+                height: "120px",
+                borderRadius: "50%",
+                border:
+                  "6px solid rgba(255,255,255,0.25)",
+                margin: "0 auto",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "55px",
+              }}
+            >
+              🎲
+            </div>
 
-boxShadow:
-  "0 0 20px rgba(77,163,255,0.15)",
-
-  border:
-  "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "22px",
-                  padding: "18px 12px",
-                  color: "white",
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                }}
-              >
-                {item}
-                <div
-                  style={{
-                    marginTop: "10px",
-                    color: "#FFC107",
-                    fontSize: "15px",
-                  }}
-                >
-                  1.98x
-                </div>
-              </button>
-            ))}
+            <h2
+              style={{
+                textAlign: "center",
+                marginTop: "35px",
+                fontSize: "28px",
+              }}
+            >
+              {game.name}
+            </h2>
           </div>
-        </div>
+        ))}
       </div>
 
       {/* BOTTOM NAVBAR */}
       <div
         style={{
           position: "fixed",
-          bottom: "20px",
-          left: "20px",
-          right: "20px",
-          background: "#121A2F",
-          borderRadius: "20px",
-          padding: "15px",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: "rgba(2,6,23,0.96)",
+          backdropFilter: "blur(12px)",
+          borderTop:
+            "1px solid rgba(255,255,255,0.08)",
           display: "flex",
           justifyContent: "space-around",
-          boxShadow: "0 0 20px rgba(77,163,255,0.3)",
+          padding: "14px 0",
+          zIndex: 999,
         }}
       >
-        <div
-          onClick={() => router.push("/gl5ball")}
-          style={{ cursor: "pointer" }}
-        >
-          🏠
-        </div>
+        {[
+          ["⌂", "Home"],
+          ["💳", "Withdraw"],
+          ["👤", "Mine"],
+          ["▶", "Recharge"],
+          ["🗺", "Maps"],
+        ].map((item, index) => (
+          <div
+            key={index}
+            style={{
+              textAlign: "center",
+              color:
+                index === 0 ? "#B26BFF" : "white",
+              fontSize: "15px",
+            }}
+          >
+            <div style={{ fontSize: "24px" }}>
+              {item[0]}
+            </div>
 
-        <div
-          onClick={() => router.push("/deposit")}
-          style={{ cursor: "pointer" }}
-        >
-          💳
-        </div>
-
-        <div
-          onClick={() => router.push("/withdraw")}
-          style={{ cursor: "pointer" }}
-        >
-          💸
-        </div>
-
-        <div
-          onClick={() => router.push("/history")}
-          style={{ cursor: "pointer" }}
-        >
-          📜
-        </div>
+            <div style={{ marginTop: "5px" }}>
+              {item[1]}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
