@@ -325,16 +325,29 @@ gamesGrid: {
 },
 
 gameCard: {
-  height: "180px",
-  borderRadius: "22px",
+  height: "190px",
+  borderRadius: "24px",
   padding: "20px",
   position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  cursor: "pointer",
 },
 
 diceCircle: {
-  width: "75px",
-  height: "75px",
+  width: "90px",
+  height: "90px",
   borderRadius: "50%",
+  border: "4px solid rgba(255,255,255,0.6)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: "42px",
+  background: "rgba(0,0,0,0.2)",
+  boxShadow: "0 0 25px rgba(255,255,255,0.15)",
+  marginBottom: "20px",
 },
 
 };
