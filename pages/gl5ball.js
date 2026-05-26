@@ -1,44 +1,36 @@
-import { useRouter } from "next/router";
-
 export default function GL5Ball() {
-  const router = useRouter();
-
   const games = [
-    ["GL5 Ball", "#7B2FFF,#4D3DFF"],
-    ["Tencent 2 Ball", "#1E63FF,#4CC9FF"],
-    ["Tencent Car", "#FF7A00,#FF9F1C"],
-    ["Tencent of King", "#00A86B,#24D6A5"],
-    ["Lucky 5D", "#FF2D8D,#FF4FA3"],
-    ["GL Pick Up", "#6C63FF,#8A7CFF"],
-    ["GL Racer", "#FF3131,#FF4B4B"],
+    "GL5 Ball",
+    "Tencent 2 Ball",
+    "Tencent Car",
+    "Tencent of King",
+    "Lucky 5D",
+    "GL Pick Up",
+    "GL Racer",
   ];
 
   return (
     <div
       style={{
-        background:
-          "linear-gradient(180deg,#020617,#071028,#0B1736)",
         minHeight: "100vh",
+        background: "#050B2E",
         color: "white",
         fontFamily: "sans-serif",
-        paddingBottom: "90px",
+        paddingBottom: "100px",
       }}
     >
       {/* HEADER */}
       <div
         style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 999,
-          padding: "14px 16px",
-          background: "rgba(5,10,30,0.92)",
-          backdropFilter: "blur(12px)",
-          borderBottom:
-            "1px solid rgba(255,255,255,0.05)",
-
+          padding: "15px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          background: "#070F3B",
+          position: "sticky",
+          top: 0,
+          zIndex: 999,
         }}
       >
         <div
@@ -50,51 +42,38 @@ export default function GL5Ball() {
         >
           <div
             style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "14px",
+              width: "50px",
+              height: "50px",
+              borderRadius: "15px",
               background:
                 "linear-gradient(135deg,#7B2FFF,#5EA8FF)",
-
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-
               fontWeight: "bold",
               fontSize: "22px",
-
-              boxShadow:
-                "0 0 18px rgba(123,47,255,0.35)",
             }}
           >
             GL
           </div>
 
-          <h2
-            style={{
-              margin: 0,
-              color: "#D96CFF",
-              fontSize: "20px",
-            }}
-          >
+          <h2 style={{ color: "#D96CFF" }}>
             GL Macau
           </h2>
         </div>
 
         <div
           style={{
-            width: "48px",
-            height: "48px",
+            width: "50px",
+            height: "50px",
             borderRadius: "50%",
             background:
               "linear-gradient(135deg,#7B2FFF,#D96CFF)",
-
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-
             fontWeight: "bold",
-            fontSize: "20px",
+            fontSize: "22px",
           }}
         >
           L
@@ -102,24 +81,20 @@ export default function GL5Ball() {
       </div>
 
       {/* BANNER */}
-      <div style={{ padding: "16px" }}>
+      <div style={{ padding: "15px" }}>
         <div
           style={{
-            borderRadius: "26px",
-            padding: "28px",
+            borderRadius: "25px",
+            padding: "30px",
             background:
               "linear-gradient(135deg,#5520B5,#3A2D91)",
-
-            boxShadow:
-              "0 0 25px rgba(123,47,255,0.25)",
           }}
         >
           <h1
             style={{
               margin: 0,
+              fontSize: "40px",
               lineHeight: 1.1,
-              fontSize: "38px",
-              fontWeight: "bold",
             }}
           >
             Welcome
@@ -136,9 +111,8 @@ export default function GL5Ball() {
 
           <p
             style={{
+              marginTop: "15px",
               opacity: 0.8,
-              marginTop: "18px",
-              fontSize: "15px",
             }}
           >
             Choose your game and start winning!
@@ -146,89 +120,78 @@ export default function GL5Ball() {
         </div>
       </div>
 
-      {/* GAME GRID */}
+      {/* GRID */}
       <div
         style={{
-          padding: "0 16px",
+          padding: "15px",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: "14px",
+          gap: "12px",
         }}
       >
         {games.map((game, index) => (
           <div
             key={index}
             style={{
-              background: `linear-gradient(135deg,${game[1]})`,
               borderRadius: "24px",
-              padding: "18px 12px",
+              padding: "18px",
+              background:
+                index % 2 === 0
+                  ? "linear-gradient(135deg,#7B2FFF,#4D3DFF)"
+                  : "linear-gradient(135deg,#1E63FF,#4CC9FF)",
 
-              position: "relative",
+              boxShadow:
+                "0 0 20px rgba(255,255,255,0.08)",
 
               border:
                 "1px solid rgba(255,255,255,0.08)",
 
-              boxShadow:
-                "0 0 22px rgba(255,255,255,0.08)",
+              position: "relative",
             }}
           >
-            {/* NUMBER */}
             <div
               style={{
                 position: "absolute",
-                top: "12px",
-                right: "12px",
-
-                width: "36px",
-                height: "36px",
-
+                top: "10px",
+                right: "10px",
+                width: "35px",
+                height: "35px",
                 borderRadius: "12px",
-
                 background: "rgba(255,255,255,0.2)",
-
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-
                 fontWeight: "bold",
-                fontSize: "18px",
               }}
             >
               {index + 1}
             </div>
 
-            {/* ICON */}
             <div
               style={{
-                width: "92px",
-                height: "92px",
+                width: "85px",
+                height: "85px",
                 borderRadius: "50%",
-
                 border:
                   "5px solid rgba(255,255,255,0.25)",
-
+                margin: "0 auto",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-
-                margin: "0 auto",
-
-                fontSize: "42px",
+                fontSize: "40px",
               }}
             >
               🎲
             </div>
 
-            {/* TITLE */}
             <h2
               style={{
                 textAlign: "center",
-                marginTop: "22px",
-                marginBottom: "8px",
+                marginTop: "18px",
                 fontSize: "18px",
               }}
             >
-              {game[0]}
+              {game}
             </h2>
           </div>
         ))}
@@ -241,26 +204,20 @@ export default function GL5Ball() {
           bottom: 0,
           left: 0,
           right: 0,
-
-          background: "rgba(2,6,23,0.96)",
-
-          backdropFilter: "blur(12px)",
-
+          background: "#020617",
           borderTop:
             "1px solid rgba(255,255,255,0.08)",
-
           display: "flex",
           justifyContent: "space-around",
-
           padding: "10px 0",
         }}
       >
         {[
-          ["⌂", "Home"],
-          ["💳", "Withdraw"],
-          ["👤", "Mine"],
-          ["▶", "Recharge"],
-          ["🗺", "Maps"],
+          "Home",
+          "Withdraw",
+          "Mine",
+          "Recharge",
+          "Maps",
         ].map((item, index) => (
           <div
             key={index}
@@ -272,10 +229,18 @@ export default function GL5Ball() {
             }}
           >
             <div style={{ fontSize: "22px" }}>
-              {item[0]}
+              {index === 0
+                ? "⌂"
+                : index === 1
+                ? "💳"
+                : index === 2
+                ? "👤"
+                : index === 3
+                ? "▶"
+                : "🗺"}
             </div>
 
-            <div>{item[1]}</div>
+            {item}
           </div>
         ))}
       </div>
