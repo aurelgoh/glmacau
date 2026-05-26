@@ -1,5 +1,13 @@
+import { useRouter } from "next/router";
+
 export default function GamePage() {
-  const items = [
+  const router = useRouter();
+
+  const { name } = router.query;
+
+  const gameName = name || "GL5 Ball";
+
+  const categories = [
     "Kecil",
     "Besar",
     "Ganjil",
@@ -8,7 +16,28 @@ export default function GamePage() {
     "Tiger",
     "Atas",
     "Bawah",
+    "Merah",
+    "Hitam",
+    "Prima",
+    "Komposit",
   ];
+
+  const bannerMap = {
+    "GL5 Ball":
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200",
+    "Tencent 2 Ball":
+      "https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1200",
+    "Tencent Car":
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200",
+    "Tencent of King":
+      "https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=1200",
+    "Lucky 5D":
+      "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200",
+    "GL Pick Up":
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200",
+    "GL Racer":
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200",
+  };
 
   return (
     <>
@@ -30,7 +59,6 @@ export default function GamePage() {
           display: "flex",
           justifyContent: "center",
           background: "#e5e5e5",
-          padding: "0",
         }}
       >
         <div
@@ -45,55 +73,91 @@ export default function GamePage() {
           {/* HEADER */}
           <div
             style={{
-              background:
-                "linear-gradient(135deg,#B14DFF,#4B52D1)",
-              padding: "20px",
-              textAlign: "center",
               position: "relative",
+              height: 320,
+              overflow: "hidden",
             }}
           >
+            <img
+              src={
+                bannerMap[gameName] ||
+                bannerMap["GL5 Ball"]
+              }
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+
             <div
               style={{
                 position: "absolute",
-                left: 20,
+                inset: 0,
+                background:
+                  "linear-gradient(to bottom,rgba(0,0,0,.2),rgba(73,0,130,.5))",
+              }}
+            />
+
+            <button
+              onClick={() => router.push("/")}
+              style={{
+                position: "absolute",
                 top: 20,
-                fontSize: 30,
+                left: 20,
+                background: "#111827",
+                color: "white",
+                border: "none",
+                width: 50,
+                height: 50,
+                borderRadius: 12,
+                fontSize: 24,
+                cursor: "pointer",
               }}
             >
               ←
-            </div>
-
-            <h1
-              style={{
-                marginTop: 60,
-                fontSize: 42,
-                marginBottom: 10,
-              }}
-            >
-              GL5 Ball
-            </h1>
+            </button>
 
             <div
               style={{
-                color: "#ddd",
-                fontSize: 18,
+                position: "absolute",
+                bottom: 30,
+                width: "100%",
+                textAlign: "center",
+                padding: "0 20px",
               }}
             >
-              Period:20260525-191 • WIB
-            </div>
+              <h1
+                style={{
+                  fontSize: 48,
+                  marginBottom: 10,
+                }}
+              >
+                {gameName}
+              </h1>
 
-            <div
-              style={{
-                marginTop: 25,
-                background: "#005C3B",
-                borderRadius: 20,
-                padding: 20,
-                fontSize: 30,
-                fontWeight: "bold",
-                color: "#00FF88",
-              }}
-            >
-              Saldo: $0
+              <div
+                style={{
+                  color: "#ddd",
+                  fontSize: 18,
+                  marginBottom: 20,
+                }}
+              >
+                Period:20260527-077 • WIB
+              </div>
+
+              <div
+                style={{
+                  background: "#005C3B",
+                  borderRadius: 18,
+                  padding: 18,
+                  fontSize: 30,
+                  fontWeight: "bold",
+                  color: "#00FF88",
+                }}
+              >
+                Saldo: $0
+              </div>
             </div>
           </div>
 
@@ -113,9 +177,7 @@ export default function GamePage() {
                 padding: 25,
               }}
             >
-              <div style={{ fontSize: 18 }}>
-                Waktu Tersisa
-              </div>
+              <div>Waktu Tersisa</div>
 
               <div
                 style={{
@@ -124,7 +186,7 @@ export default function GamePage() {
                   marginTop: 20,
                 }}
               >
-                03:53
+                02:41
               </div>
             </div>
 
@@ -135,9 +197,7 @@ export default function GamePage() {
                 padding: 25,
               }}
             >
-              <div style={{ fontSize: 18 }}>
-                Odds K/B
-              </div>
+              <div>Odds K/B</div>
 
               <div
                 style={{
@@ -169,7 +229,7 @@ export default function GamePage() {
                 gap: 18,
               }}
             >
-              {items.map((item, i) => (
+              {categories.map((item, i) => (
                 <div
                   key={i}
                   style={{
