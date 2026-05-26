@@ -171,7 +171,7 @@ const styles = {
     background: "#040b2d",
     minHeight: "100vh",
     color: "white",
-    padding: "20px",
+    padding: "12px",
     fontFamily: "Arial",
   },
 
@@ -179,64 +179,69 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: "14px",
     flexWrap: "wrap",
-    gap: "15px",
-    marginBottom: "20px",
   },
 
   logoWrap: {
     display: "flex",
     alignItems: "center",
-    gap: "12px",
+    gap: "10px",
   },
 
   logo: {
-    width: "60px",
-    height: "60px",
-    borderRadius: "20px",
+    width: "52px",
+    height: "52px",
+    borderRadius: "14px",
     background:
       "linear-gradient(135deg,#7b2ff7,#b14cff)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",
-    fontSize: "22px",
+    fontSize: "20px",
   },
 
   logoText: {
-    color: "#cc77ff",
+    color: "#d17cff",
+    fontSize: "16px",
+    fontWeight: "bold",
   },
 
   menu: {
     display: "flex",
-    gap: "10px",
+    gap: "6px",
     flexWrap: "wrap",
+    marginTop: "10px",
   },
 
   menuBtn: {
     border: "none",
     color: "white",
-    padding: "12px 18px",
-    borderRadius: "14px",
+    background: "transparent",
+    padding: "8px 12px",
+    borderRadius: "12px",
     cursor: "pointer",
+    fontSize: "13px",
   },
 
   profileWrap: {
     display: "flex",
-    gap: "12px",
     alignItems: "center",
+    gap: "10px",
   },
 
   balance: {
     background: "#0c6a43",
-    padding: "12px 16px",
-    borderRadius: "16px",
+    padding: "10px 14px",
+    borderRadius: "14px",
     fontWeight: "bold",
+    fontSize: "14px",
   },
 
   avatar: {
-    width: "50px",
-    height: "50px",
+    width: "46px",
+    height: "46px",
     borderRadius: "50%",
     background: "#8E44FF",
     display: "flex",
@@ -248,106 +253,110 @@ const styles = {
   banner: {
     background:
       "linear-gradient(135deg,#2d1b73,#243b84)",
-    borderRadius: "35px",
-    padding: "35px",
+    borderRadius: "28px",
+    padding: "24px",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "30px",
+    marginBottom: "18px",
   },
 
   title: {
-    fontSize: "48px",
+    fontSize: "30px",
+    lineHeight: "38px",
+    marginBottom: "10px",
   },
 
   glText: {
-    color: "#bb6cff",
+    color: "#d177ff",
   },
 
   controller: {
-    fontSize: "60px",
+    fontSize: "50px",
   },
 
   gamesGrid: {
     display: "grid",
-    gridTemplateColumns:
-      "repeat(auto-fit, minmax(180px,1fr))",
-    gap: "20px",
+    gridTemplateColumns: "repeat(2,1fr)",
+    gap: "12px",
   },
 
   gameCard: {
-    borderRadius: "28px",
-    padding: "25px",
+    borderRadius: "22px",
+    padding: "16px",
+    minHeight: "160px",
     position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     cursor: "pointer",
-    minHeight: "220px",
   },
 
   diceCircle: {
-    width: "90px",
-    height: "90px",
+    width: "72px",
+    height: "72px",
     borderRadius: "50%",
     border: "4px solid",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: "42px",
-    background: "rgba(0,0,0,0.2)",
-    marginBottom: "20px",
+    fontSize: "34px",
+    background: "rgba(0,0,0,0.22)",
+    marginBottom: "14px",
   },
 
   gameTitle: {
     fontWeight: "bold",
-    fontSize: "24px",
+    fontSize: "15px",
     textAlign: "center",
   },
 
   numberBadge: {
     position: "absolute",
-    top: "15px",
-    right: "15px",
-    width: "38px",
-    height: "38px",
-    borderRadius: "12px",
-    background: "rgba(255,255,255,0.2)",
+    top: "10px",
+    right: "10px",
+    width: "30px",
+    height: "30px",
+    borderRadius: "10px",
+    background: "rgba(255,255,255,0.25)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",
+    fontSize: "14px",
   },
 
   bottomGrid: {
-    marginTop: "25px",
     display: "grid",
-    gridTemplateColumns:
-      "repeat(auto-fit, minmax(180px,1fr))",
-    gap: "20px",
+    gridTemplateColumns: "repeat(4,1fr)",
+    gap: "10px",
+    marginTop: "16px",
   },
 
   bottomCard: {
     background: "#101c5d",
-    borderRadius: "30px",
-    minHeight: "150px",
+    borderRadius: "22px",
+    minHeight: "110px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    textAlign: "center",
+    padding: "10px",
     cursor: "pointer",
   },
 
   bottomIcon: {
-    fontSize: "42px",
-    marginBottom: "10px",
+    fontSize: "28px",
+    marginBottom: "8px",
   },
 
   footer: {
-    marginTop: "25px",
+    marginTop: "18px",
     background: "#2a2375",
-    padding: "18px",
+    padding: "16px",
     borderRadius: "20px",
+    fontSize: "13px",
   },
 };
