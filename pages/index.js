@@ -112,21 +112,21 @@ export default function Home() {
       {game.number}
     </div>
 
-    <div
-      style={{
-        ...styles.diceCircle,
-        borderColor:
-          game.number === 1 ? "#d16cff" :
-          game.number === 2 ? "#34c3ff" :
-          game.number === 3 ? "#ff9800" :
-          game.number === 4 ? "#1affc6" :
-          game.number === 5 ? "#ff5fa2" :
-          game.number === 6 ? "#8a7cff" :
-          "#ff5b5b",
-      }}
-    >
-      🎲
-    </div>
+<div
+  style={{
+    ...styles.diceCircle,
+    borderColor:
+      game.number === 1 ? "#d16cff" :
+      game.number === 2 ? "#34c3ff" :
+      game.number === 3 ? "#ff9800" :
+      game.number === 4 ? "#1affc6" :
+      game.number === 5 ? "#ff5fa2" :
+      game.number === 6 ? "#8a7cff" :
+      "#ff5b5b"
+  }}
+>
+  🎲
+</div>
 
     <div style={styles.gameTitle}>
       {game.title}
@@ -333,7 +333,7 @@ gamesGrid: {
   marginTop: "20px",
 },
 
-gameCard: {
+  gameCard: {
   height: "180px",
   borderRadius: "22px",
   padding: "20px",
