@@ -100,21 +100,30 @@ export default function Home() {
 
       {/* GAME LIST */}
       <div style={styles.gameGrid}>
-        {games.map((game) => (
-          <div
-            key={game.number}
-            style={{
-              ...styles.gameCard,
-              background: game.color,
-            }}
-          >
-            <div style={styles.badge}>{game.number}</div>
+       {games.map((game) => (
+  <div
+    key={game.title}
+    style={{
+      ...styles.gameCard,
+      background: game.color,
+    }}
+  >
+    {/* nomor kanan atas */}
+    <div style={styles.numberBadge}>
+      {game.number}
+    </div>
 
-            <div style={styles.gameIcon}>🎲</div>
+    {/* lingkaran dadu */}
+    <div style={styles.diceCircle}>
+      🎲
+    </div>
 
-            <h3>{game.title}</h3>
-          </div>
-        ))}
+    {/* nama game */}
+    <div style={styles.gameTitle}>
+      {game.title}
+    </div>
+  </div>
+))}
       </div>
 
       {/* MENU BOX */}
