@@ -213,6 +213,50 @@ export default function GL5Ball() {
           </div>
         </div>
       </div>
+
+      {/* BOTTOM NAVBAR */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          left: "20px",
+          right: "20px",
+          background: "#121A2F",
+          borderRadius: "20px",
+          padding: "15px",
+          display: "flex",
+          justifyContent: "space-around",
+          boxShadow: "0 0 20px rgba(77,163,255,0.3)",
+        }}
+      >
+        <div
+          onClick={() => router.push("/gl5ball")}
+          style={{ cursor: "pointer" }}
+        >
+          🏠
+        </div>
+
+        <div
+          onClick={() => router.push("/deposit")}
+          style={{ cursor: "pointer" }}
+        >
+          💳
+        </div>
+
+        <div
+          onClick={() => router.push("/withdraw")}
+          style={{ cursor: "pointer" }}
+        >
+          💸
+        </div>
+
+        <div
+          onClick={() => router.push("/history")}
+          style={{ cursor: "pointer" }}
+        >
+          📜
+        </div>
+      </div>
     </div>
   );
 }
