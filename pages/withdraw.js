@@ -1,58 +1,72 @@
 export default function Withdraw() {
   return (
-    <div style={styles.page}>
-      <h1>💸 Withdraw</h1>
+    <div
+      style={{
+        background: "#0B0F1A",
+        minHeight: "100vh",
+        color: "white",
+        padding: "20px",
+        fontFamily: "sans-serif",
+      }}
+    >
+      <button
+        onClick={() => window.history.back()}
+        style={{
+          background: "#1A235F",
+          border: "none",
+          color: "white",
+          width: "45px",
+          height: "45px",
+          borderRadius: "12px",
+          fontSize: "20px",
+          cursor: "pointer",
+          marginBottom: "20px",
+        }}
+      >
+        ←
+      </button>
 
-      <div style={styles.card}>
-        <h3>Available Balance</h3>
-        <h2>$1,250.00</h2>
+      <h1>Withdraw</h1>
+
+      <div
+        style={{
+          background: "#121A2F",
+          padding: "20px",
+          borderRadius: "20px",
+          marginTop: "20px",
+        }}
+      >
+        <p style={{ color: "#aaa" }}>Bank Account</p>
 
         <input
-          placeholder="Enter withdraw amount"
-          style={styles.input}
+          placeholder="Enter bank number"
+          style={{
+            width: "100%",
+            padding: "15px",
+            borderRadius: "14px",
+            border: "none",
+            marginTop: "10px",
+            background: "#1A235F",
+            color: "white",
+          }}
         />
 
-        <button style={styles.button}>
+        <button
+          style={{
+            marginTop: "20px",
+            width: "100%",
+            padding: "15px",
+            border: "none",
+            borderRadius: "14px",
+            background: "#4DA3FF",
+            color: "white",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
           Withdraw Now
         </button>
       </div>
     </div>
   );
 }
-
-const styles = {
-  page: {
-    background: "#040b2d",
-    minHeight: "100vh",
-    color: "white",
-    padding: "20px",
-    fontFamily: "Arial",
-  },
-
-  card: {
-    background: "#101c5d",
-    padding: "20px",
-    borderRadius: "24px",
-    marginTop: "20px",
-  },
-
-  input: {
-    width: "100%",
-    padding: "14px",
-    borderRadius: "14px",
-    border: "none",
-    marginTop: "16px",
-    marginBottom: "16px",
-  },
-
-  button: {
-    width: "100%",
-    padding: "16px",
-    border: "none",
-    borderRadius: "14px",
-    background: "#8e44ff",
-    color: "white",
-    fontWeight: "bold",
-    cursor: "pointer",
-  },
-};
