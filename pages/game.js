@@ -1,147 +1,213 @@
-import { useRouter } from "next/router";
-
-export default function Game() {
-  const router = useRouter();
-
-  const names = [
-    "GL5 Ball",
-    "Tencent 2 Ball",
-    "Tencent Car",
-    "Tencent of King",
-    "Lucky 5D",
-    "GL Pick Up",
-    "GL Racer"
-  ];
-
-  const gameName = names[router.query.id] || "GL5 Ball";
-
-  const categories = [
-    "Kecil","Besar",
-    "Ganjil","Genap",
-    "Dragon","Tiger",
-    "Atas","Bawah",
-    "Merah","Hitam",
-    "Prima","Komposit",
-    "Tengah","Pinggir",
-    "Kombinasi","Tunggal",
-    "Jumbo","Mini",
-    "Super","Normal"
+export default function GamePage() {
+  const items = [
+    "Kecil",
+    "Besar",
+    "Ganjil",
+    "Genap",
+    "Dragon",
+    "Tiger",
+    "Atas",
+    "Bawah",
   ];
 
   return (
-    <div style={{
-      minHeight:"100vh",
-      background:"linear-gradient(180deg,#030B2B,#071B4D)",
-      color:"white",
-      fontFamily:"sans-serif",
-      maxWidth:"500px",
-      margin:"0 auto",
-      paddingBottom:"100px"
-    }}>
+    <>
+      <style jsx global>{`
+        body {
+          margin: 0;
+          background: #e5e5e5;
+          font-family: Arial;
+        }
 
-      <div style={{
-        height:"230px",
-        background:"linear-gradient(135deg,#9333EA,#1E3A8A)",
-        padding:"20px",
-        borderBottomLeftRadius:"25px",
-        borderBottomRightRadius:"25px"
-      }}>
-        <a href="/" style={{
-          color:"white",
-          textDecoration:"none",
-          fontSize:"25px"
-        }}>
-          ←
-        </a>
+        * {
+          box-sizing: border-box;
+        }
+      `}</style>
 
-        <h1 style={{
-          textAlign:"center",
-          marginTop:"40px"
-        }}>
-          {gameName}
-        </h1>
-
-        <p style={{
-          textAlign:"center",
-          opacity:0.8
-        }}>
-          Period:20260525-191 • WIB
-        </p>
-
-        <div style={{
-          marginTop:"20px",
-          background:"#064E3B",
-          padding:"15px",
-          borderRadius:"18px",
-          textAlign:"center",
-          fontSize:"30px",
-          fontWeight:"bold",
-          color:"#22C55E"
-        }}>
-          Saldo: $0
-        </div>
-      </div>
-
-      <div style={{
-        display:"grid",
-        gridTemplateColumns:"1fr 1fr",
-        gap:"15px",
-        padding:"20px"
-      }}>
-        <div style={{
-          background:"#2E1065",
-          borderRadius:"22px",
-          padding:"20px"
-        }}>
-          <p>Waktu Tersisa</p>
-          <h1>03:53</h1>
-        </div>
-
-        <div style={{
-          background:"#3F1D0F",
-          borderRadius:"22px",
-          padding:"20px"
-        }}>
-          <p>Odds K/B</p>
-          <h1>1.98x</h1>
-        </div>
-      </div>
-
-      <div style={{padding:"20px"}}>
-        <h2>Pilih Kategori</h2>
-
-        <div style={{
-          display:"grid",
-          gridTemplateColumns:"1fr 1fr",
-          gap:"15px"
-        }}>
-          {categories.map((item,index)=>(
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          background: "#e5e5e5",
+          padding: "0",
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "575px",
+            background: "#020b3f",
+            minHeight: "100vh",
+            color: "white",
+          }}
+        >
+          {/* HEADER */}
+          <div
+            style={{
+              background:
+                "linear-gradient(135deg,#B14DFF,#4B52D1)",
+              padding: "20px",
+              textAlign: "center",
+              position: "relative",
+            }}
+          >
             <div
-              key={index}
               style={{
-                background:"rgba(255,255,255,0.06)",
-                border:"1px solid rgba(255,255,255,0.1)",
-                borderRadius:"22px",
-                padding:"25px",
-                textAlign:"center"
+                position: "absolute",
+                left: 20,
+                top: 20,
+                fontSize: 30,
               }}
             >
-              <h2>{item}</h2>
+              ←
+            </div>
 
-              <div style={{
-                marginTop:"10px",
-                display:"inline-block",
-                background:"#6B4F00",
-                padding:"5px 12px",
-                borderRadius:"999px"
-              }}>
+            <h1
+              style={{
+                marginTop: 60,
+                fontSize: 42,
+                marginBottom: 10,
+              }}
+            >
+              GL5 Ball
+            </h1>
+
+            <div
+              style={{
+                color: "#ddd",
+                fontSize: 18,
+              }}
+            >
+              Period:20260525-191 • WIB
+            </div>
+
+            <div
+              style={{
+                marginTop: 25,
+                background: "#005C3B",
+                borderRadius: 20,
+                padding: 20,
+                fontSize: 30,
+                fontWeight: "bold",
+                color: "#00FF88",
+              }}
+            >
+              Saldo: $0
+            </div>
+          </div>
+
+          {/* INFO */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 15,
+              padding: 20,
+            }}
+          >
+            <div
+              style={{
+                background: "#3A1175",
+                borderRadius: 24,
+                padding: 25,
+              }}
+            >
+              <div style={{ fontSize: 18 }}>
+                Waktu Tersisa
+              </div>
+
+              <div
+                style={{
+                  fontSize: 34,
+                  fontWeight: "bold",
+                  marginTop: 20,
+                }}
+              >
+                03:53
+              </div>
+            </div>
+
+            <div
+              style={{
+                background: "#5A2208",
+                borderRadius: 24,
+                padding: 25,
+              }}
+            >
+              <div style={{ fontSize: 18 }}>
+                Odds K/B
+              </div>
+
+              <div
+                style={{
+                  fontSize: 34,
+                  fontWeight: "bold",
+                  marginTop: 20,
+                }}
+              >
                 1.98x
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* KATEGORI */}
+          <div style={{ padding: 20 }}>
+            <h2
+              style={{
+                fontSize: 28,
+                marginBottom: 30,
+              }}
+            >
+              Pilih Kategori
+            </h2>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 18,
+              }}
+            >
+              {items.map((item, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background: "#14204E",
+                    borderRadius: 24,
+                    padding: "40px 20px",
+                    textAlign: "center",
+                    border:
+                      "1px solid rgba(255,255,255,0.1)",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 28,
+                      fontWeight: "bold",
+                      marginBottom: 20,
+                    }}
+                  >
+                    {item}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "inline-block",
+                      background: "#9C7300",
+                      padding: "8px 18px",
+                      borderRadius: 999,
+                      fontSize: 18,
+                    }}
+                  >
+                    1.98x
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-
-    </div>
+    </>
   );
 }
