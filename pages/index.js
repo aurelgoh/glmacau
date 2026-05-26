@@ -115,8 +115,10 @@ export default function Home() {
 
     {/* lingkaran dadu */}
     <div style={styles.diceCircle}>
-      🎲
-    </div>
+  <div style={styles.innerDice}>
+    🎲
+  </div>
+</div>
 
     {/* nama game */}
     <div style={styles.gameTitle}>
@@ -337,17 +339,26 @@ gameCard: {
 },
 
 diceCircle: {
-  width: "90px",
-  height: "90px",
+  width: "95px",
+  height: "95px",
   borderRadius: "50%",
-  border: "4px solid rgba(255,255,255,0.6)",
+  border: "4px solid rgba(255,255,255,0.5)",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  fontSize: "42px",
-  background: "rgba(0,0,0,0.2)",
-  boxShadow: "0 0 25px rgba(255,255,255,0.15)",
   marginBottom: "20px",
+  background: "rgba(0,0,0,0.15)",
+},
+  
+  innerDice: {
+  width: "65px",
+  height: "65px",
+  borderRadius: "50%",
+  background: "rgba(0,0,0,0.25)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: "36px",
 },
 
 };
