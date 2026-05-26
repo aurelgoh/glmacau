@@ -100,7 +100,7 @@ export default function Home() {
 
       {/* GAME LIST */}
       <div style={styles.gameGrid}>
-       {games.map((game) => (
+  {games.map((game) => (
   <div
     key={game.title}
     style={{
@@ -108,19 +108,26 @@ export default function Home() {
       background: game.color,
     }}
   >
-    {/* nomor kanan atas */}
     <div style={styles.numberBadge}>
       {game.number}
     </div>
 
-    {/* lingkaran dadu */}
-    <div style={styles.diceCircle}>
-  <div style={styles.innerDice}>
-    🎲
-  </div>
-</div>
+    <div
+      style={{
+        ...styles.diceCircle,
+        borderColor:
+          game.number === 1 ? "#d16cff" :
+          game.number === 2 ? "#34c3ff" :
+          game.number === 3 ? "#ff9800" :
+          game.number === 4 ? "#1affc6" :
+          game.number === 5 ? "#ff5fa2" :
+          game.number === 6 ? "#8a7cff" :
+          "#ff5b5b",
+      }}
+    >
+      🎲
+    </div>
 
-    {/* nama game */}
     <div style={styles.gameTitle}>
       {game.title}
     </div>
@@ -327,27 +334,49 @@ gamesGrid: {
 },
 
 gameCard: {
-  height: "190px",
-  borderRadius: "24px",
+  height: "180px",
+  borderRadius: "22px",
   padding: "20px",
   position: "relative",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  boxShadow: "inset 0 0 20px rgba(255,255,255,0.08)",
   cursor: "pointer",
 },
-
+  
 diceCircle: {
-  width: "95px",
-  height: "95px",
+  width: "90px",
+  height: "90px",
   borderRadius: "50%",
-  border: "4px solid rgba(255,255,255,0.5)",
+  border: "4px solid",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  marginBottom: "20px",
-  background: "rgba(0,0,0,0.15)",
+  fontSize: "34px",
+  background: "rgba(0,0,0,0.25)",
+  marginBottom: "18px",
+},
+  gameTitle: {
+  fontSize: "20px",
+  fontWeight: "bold",
+  color: "white",
+},
+
+numberBadge: {
+  position: "absolute",
+  top: "14px",
+  right: "14px",
+  width: "34px",
+  height: "34px",
+  borderRadius: "12px",
+  background: "rgba(255,255,255,0.3)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: "bold",
+  color: "white",
 },
   
   innerDice: {
