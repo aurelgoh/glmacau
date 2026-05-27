@@ -19,17 +19,24 @@ export default function Home() {
         minHeight: "100vh",
         background: "#050816",
         color: "white",
-        padding: "30px",
-        fontFamily: "sans-serif",
+        padding: "40px",
+        fontFamily: "Arial",
       }}
     >
-      <h1 style={{ color: "#b06cff" }}>GL Macau</h1>
+      <h1
+        style={{
+          fontSize: "50px",
+          marginBottom: "40px",
+          color: "#b06cff",
+        }}
+      >
+        GL Macau
+      </h1>
 
       <div
         style={{
-          marginTop: "30px",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
+          gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
           gap: "20px",
         }}
       >
@@ -40,15 +47,16 @@ export default function Home() {
               router.push(`/game?name=${encodeURIComponent(game)}`)
             }
             style={{
-              padding: "30px",
-              borderRadius: "20px",
               background: "#111b4b",
+              border: "1px solid #2d3f8f",
+              borderRadius: "20px",
+              padding: "40px",
               cursor: "pointer",
               textAlign: "center",
-              border: "1px solid #2d3f8f",
+              transition: "0.3s",
             }}
           >
-            <h3>{game}</h3>
+            <h2>{game}</h2>
           </div>
         ))}
       </div>
