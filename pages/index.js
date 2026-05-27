@@ -194,14 +194,24 @@ export default function Home() {
                 }}
               >
                 <div
-                  style={{
-                    width: "52px",
-                    height: "52px",
-                    borderRadius: "50%",
-                    border: "3px solid rgba(255,255,255,0.8)",
-                    marginBottom: "12px",
-                  }}
-                ></div>
+<div
+  style={{
+    width: "52px",
+    height: "52px",
+    borderRadius: "50%",
+    border: "3px solid rgba(255,255,255,0.7)",
+    marginBottom: "12px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "rgba(255,255,255,0.08)",
+    backdropFilter: "blur(6px)",
+    boxShadow: "0 0 18px rgba(255,255,255,0.25)",
+    fontSize: "18px",
+  }}
+>
+  🎮
+</div>
 
                 <span
                   style={{
