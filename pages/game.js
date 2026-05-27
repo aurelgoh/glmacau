@@ -10,37 +10,44 @@ export default function GamePage() {
         minHeight: "100vh",
         background: "#050816",
         color: "white",
-        padding: "30px",
-        fontFamily: "sans-serif",
+        padding: "40px",
+        fontFamily: "Arial",
       }}
     >
       <button
         onClick={() => router.push("/")}
         style={{
-          marginBottom: "20px",
           padding: "10px 20px",
-          background: "#6c3cff",
-          color: "white",
           border: "none",
           borderRadius: "10px",
+          background: "#7b4dff",
+          color: "white",
           cursor: "pointer",
+          marginBottom: "30px",
         }}
       >
         Back
       </button>
 
-      <h1>{name}</h1>
+      <h1
+        style={{
+          fontSize: "50px",
+          color: "#b06cff",
+        }}
+      >
+        {name}
+      </h1>
 
       <div
         style={{
-          marginTop: "20px",
-          padding: "20px",
+          marginTop: "30px",
           background: "#111b4b",
+          padding: "30px",
           borderRadius: "20px",
         }}
       >
         <h2>Saldo: $0</h2>
-        <p>Timer: 05:00</p>
+        <h3>Timer: 05:00</h3>
       </div>
     </div>
   );
