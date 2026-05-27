@@ -1,323 +1,355 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-export default function GamePage() {
+export default function Game() {
   const router = useRouter();
+  const { name } = router.query;
 
-  const gameName =
-    typeof window !== "undefined"
-      ? decodeURIComponent(
-          new URLSearchParams(window.location.search).get(
-            "name"
-          ) || "GL5 Ball"
-        )
-      : "GL5 Ball";
+  const gameName = name || "GL5 Ball";
+
+  const [time, setTime] = useState(300);
+  const [selected, setSelected] = useState([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prev) => {
+        if (prev <= 1) return 300;
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const categories = [
-    "Kecil",
-    "Besar",
-    "Ganjil",
-    "Genap",
-    "Dragon",
-    "Tiger",
-    "Atas",
-    "Bawah",
-    "Merah",
-    "Hitam",
-    "Prima",
-    "Komposit",
+    {
+      name: "Kecil",
+      sub: "1-24",
+      color: "#22d3ee",
+    },
+    {
+      name: "Besar",
+      sub: "25-49",
+      color: "#fb923c",
+    },
+    {
+      name: "Ganjil",
+      sub: "1,3,5...",
+      color: "#ec4899",
+    },
+    {
+      name: "Genap",
+      sub: "2,4,6...",
+      color: "#22c55e",
+    },
+    {
+      name: "Dragon",
+      sub: "Ekor>Kepala",
+      color: "#f87171",
+    },
+    {
+      name: "Tiger",
+      sub: "Kepala>Ekor",
+      color: "#facc15",
+    },
   ];
 
-  const bannerMap = {
-    "GL5 Ball":
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200",
-
-    "Tencent 2 Ball":
-      "https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1200",
-
-    "Tencent Car":
-      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200",
-
-    "Tencent of King":
-      "https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=1200",
-
-    "Lucky 5D":
-      "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=1200",
-
-    "GL Pick Up":
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200",
-
-    "GL Racer":
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200",
+  const toggleSelect = (item) => {
+    if (selected.includes(item)) {
+      setSelected(selected.filter((x) => x !== item));
+    } else {
+      setSelected([...selected, item]);
+    }
   };
 
   return (
-    <>
-      <style jsx global>{`
-        body {
-          margin: 0;
-          background: #020617;
-          font-family: Arial;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#020617",
+        color: "white",
+        fontFamily: "Arial",
+      }}
+    >
+      {/* TOPBAR */}
       <div
         style={{
-          minHeight: "100vh",
-          background:
-            "linear-gradient(to bottom,#020617,#020b3f)",
-          color: "white",
+          height: 80,
+          borderBottom: "1px solid rgba(255,255,255,.08)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 40px",
         }}
       >
-        {/* DESKTOP CONTAINER */}
+        <h1 style={{ color: "#c084fc" }}>GLMacau</h1>
+
         <div
           style={{
-            width: "100%",
-            maxWidth: 1500,
-            margin: "0 auto",
-            padding: 20,
+            display: "flex",
+            gap: 30,
+            color: "#aaa",
           }}
         >
-          {/* HEADER IMAGE */}
-          <div
+          <span>Home</span>
+          <span>Withdraw</span>
+          <span>Mine</span>
+          <span>Recharge</span>
+          <span>Maps</span>
+        </div>
+
+        <div
+          style={{
+            background: "#111827",
+            padding: "10px 20px",
+            borderRadius: 999,
+            color: "#22c55e",
+          }}
+        >
+          $0
+        </div>
+      </div>
+
+      {/* CONTENT */}
+      <div
+        style={{
+          maxWidth: 1400,
+          margin: "30px auto",
+          padding: 20,
+        }}
+      >
+        {/* HEADER */}
+        <div
+          style={{
+            background:
+              "linear-gradient(to right,#9333ea,#2563eb)",
+            borderRadius: 25,
+            padding: 30,
+          }}
+        >
+          <button
+            onClick={() => router.push("/home")}
             style={{
-              position: "relative",
-              height: 280,
-              borderRadius: 25,
-              overflow: "hidden",
-              marginBottom: 20,
+              background: "#00000055",
+              border: "none",
+              color: "white",
+              fontSize: 24,
+              borderRadius: 12,
+              width: 50,
+              height: 50,
+              cursor: "pointer",
             }}
           >
-            <img
-              src={
-                bannerMap[gameName] ||
-                bannerMap["GL5 Ball"]
-              }
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
+            ←
+          </button>
 
-            <div
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: 10,
+            }}
+          >
+            <h1
               style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to bottom,rgba(0,0,0,.3),rgba(0,0,0,.6))",
-              }}
-            />
-
-            <button
-              onClick={() => router.push("/")}
-              style={{
-                position: "absolute",
-                top: 20,
-                left: 20,
-                width: 50,
-                height: 50,
-                borderRadius: 14,
-                border: "none",
-                background: "#111827",
-                color: "white",
-                fontSize: 24,
-                cursor: "pointer",
+                fontSize: 48,
+                marginBottom: 10,
               }}
             >
-              ←
-            </button>
+              {gameName}
+            </h1>
 
-            <div
+            <p
               style={{
-                position: "absolute",
-                bottom: 30,
-                width: "100%",
-                textAlign: "center",
-                padding: "0 20px",
+                color: "#ddd",
               }}
             >
-              <h1
-                style={{
-                  margin: 0,
-                  fontSize: 50,
-                }}
-              >
-                {gameName}
-              </h1>
-
-              <div
-                style={{
-                  marginTop: 10,
-                  color: "#ddd",
-                  fontSize: 18,
-                }}
-              >
-                Period:20260527-077 • WIB
-              </div>
-
-              <div
-                style={{
-                  marginTop: 20,
-                  background: "#005C3B",
-                  borderRadius: 18,
-                  padding: 18,
-                  fontSize: 30,
-                  fontWeight: "bold",
-                  color: "#00FF88",
-                  maxWidth: 1300,
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              >
-                Saldo: $0
-              </div>
-            </div>
+              Period:20260527-081 • WIB
+            </p>
           </div>
 
-          {/* INFO */}
+          {/* SALDO */}
+          <div
+            style={{
+              marginTop: 25,
+              background: "#064e3b",
+              padding: 20,
+              borderRadius: 20,
+              textAlign: "center",
+              fontSize: 40,
+              color: "#22c55e",
+              fontWeight: "bold",
+            }}
+          >
+            Saldo: $0
+          </div>
+        </div>
+
+        {/* INFO */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 20,
+            marginTop: 20,
+          }}
+        >
+          <div
+            style={{
+              background:
+                "linear-gradient(to right,#581c87,#111827)",
+              padding: 30,
+              borderRadius: 20,
+            }}
+          >
+            <p style={{ color: "#ccc" }}>
+              Waktu Tersisa
+            </p>
+
+            <h1
+              style={{
+                fontSize: 55,
+              }}
+            >
+              {Math.floor(time / 60)}:
+              {String(time % 60).padStart(2, "0")}
+            </h1>
+          </div>
+
+          <div
+            style={{
+              background:
+                "linear-gradient(to right,#78350f,#111827)",
+              padding: 30,
+              borderRadius: 20,
+            }}
+          >
+            <p style={{ color: "#ccc" }}>
+              Odds K/B
+            </p>
+
+            <h1
+              style={{
+                fontSize: 55,
+                color: "#facc15",
+              }}
+            >
+              1.98x
+            </h1>
+          </div>
+        </div>
+
+        {/* CATEGORY */}
+        <div
+          style={{
+            marginTop: 30,
+            background: "#0f172a",
+            borderRadius: 25,
+            padding: 30,
+            border: "1px solid rgba(255,255,255,.08)",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: 42,
+            }}
+          >
+            Pilih Kategori
+          </h1>
+
+          <p
+            style={{
+              color: "#999",
+              marginBottom: 30,
+            }}
+          >
+            Pilih satu atau lebih kategori taruhan
+          </p>
+
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns:
+                "repeat(auto-fit,minmax(350px,1fr))",
               gap: 20,
-              marginBottom: 20,
             }}
           >
-            <div
-              style={{
-                background:
-                  "linear-gradient(135deg,#2e1065,#111827)",
-                borderRadius: 24,
-                padding: 30,
-              }}
-            >
+            {categories.map((item) => (
               <div
+                key={item.name}
+                onClick={() => toggleSelect(item.name)}
                 style={{
-                  color: "#ddd",
-                  fontSize: 20,
+                  background: "#1e293b",
+                  borderRadius: 20,
+                  padding: 40,
+                  cursor: "pointer",
+                  border: selected.includes(item.name)
+                    ? "3px solid white"
+                    : `2px solid ${item.color}`,
+                  textAlign: "center",
                 }}
               >
-                Waktu Tersisa
-              </div>
-
-              <div
-                style={{
-                  marginTop: 15,
-                  fontSize: 50,
-                  fontWeight: "bold",
-                }}
-              >
-                02:41
-              </div>
-            </div>
-
-            <div
-              style={{
-                background:
-                  "linear-gradient(135deg,#5A2208,#111827)",
-                borderRadius: 24,
-                padding: 30,
-              }}
-            >
-              <div
-                style={{
-                  color: "#ddd",
-                  fontSize: 20,
-                }}
-              >
-                Odds K/B
-              </div>
-
-              <div
-                style={{
-                  marginTop: 15,
-                  fontSize: 50,
-                  fontWeight: "bold",
-                }}
-              >
-                1.98x / 1.98x
-              </div>
-            </div>
-          </div>
-
-          {/* CATEGORY */}
-          <div
-            style={{
-              background: "rgba(0,0,0,.2)",
-              borderRadius: 24,
-              padding: 30,
-            }}
-          >
-            <h2
-              style={{
-                marginTop: 0,
-                fontSize: 42,
-              }}
-            >
-              Pilih Kategori
-            </h2>
-
-            <div
-              style={{
-                color: "#aaa",
-                marginBottom: 30,
-                fontSize: 18,
-              }}
-            >
-              Pilih satu atau lebih kategori taruhan
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns:
-                  "repeat(2,minmax(0,1fr))",
-                gap: 20,
-              }}
-            >
-              {categories.map((item, i) => (
-                <div
-                  key={i}
+                <h1
                   style={{
-                    background: "#1E293B",
-                    borderRadius: 22,
-                    padding: "45px 20px",
-                    textAlign: "center",
-                    border:
-                      "1px solid rgba(255,255,255,.1)",
+                    color: item.color,
+                    fontSize: 42,
                   }}
                 >
-                  <div
-                    style={{
-                      fontSize: 40,
-                      fontWeight: "bold",
-                      marginBottom: 20,
-                    }}
-                  >
-                    {item}
-                  </div>
+                  {item.name}
+                </h1>
 
-                  <div
-                    style={{
-                      display: "inline-block",
-                      background: "#9C7300",
-                      padding: "10px 20px",
-                      borderRadius: 999,
-                      fontSize: 20,
-                    }}
-                  >
-                    1.98x
-                  </div>
+                <p
+                  style={{
+                    color: "#999",
+                    marginTop: 10,
+                  }}
+                >
+                  {item.sub}
+                </p>
+
+                <div
+                  style={{
+                    marginTop: 20,
+                    display: "inline-block",
+                    background: "#a16207",
+                    padding: "8px 18px",
+                    borderRadius: 999,
+                    fontWeight: "bold",
+                  }}
+                >
+                  1.98x
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+
+          {selected.length > 0 && (
+            <div
+              style={{
+                position: "fixed",
+                bottom: 30,
+                left: "50%",
+                transform: "translateX(-50%)",
+              }}
+            >
+              <button
+                style={{
+                  background:
+                    "linear-gradient(to right,#a855f7,#3b82f6)",
+                  border: "none",
+                  padding: "20px 50px",
+                  borderRadius: 999,
+                  color: "white",
+                  fontSize: 24,
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                Lanjutkan Taruhan ({selected.length})
+              </button>
+            </div>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
