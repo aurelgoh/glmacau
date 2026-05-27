@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-export default function Game() {
+export default function GamePage() {
   const router = useRouter();
   const { name } = router.query;
 
@@ -10,38 +10,37 @@ export default function Game() {
         minHeight: "100vh",
         background: "#050816",
         color: "white",
-        padding: "40px",
+        padding: "30px",
         fontFamily: "sans-serif",
       }}
     >
       <button
         onClick={() => router.push("/")}
         style={{
+          marginBottom: "20px",
           padding: "10px 20px",
-          borderRadius: "10px",
-          border: "none",
-          background: "#7c3aed",
+          background: "#6c3cff",
           color: "white",
+          border: "none",
+          borderRadius: "10px",
           cursor: "pointer",
         }}
       >
         Back
       </button>
 
-      <h1 style={{ marginTop: "40px" }}>
-        {name || "Loading..."}
-      </h1>
+      <h1>{name}</h1>
 
       <div
         style={{
-          marginTop: "30px",
-          padding: "30px",
+          marginTop: "20px",
+          padding: "20px",
+          background: "#111b4b",
           borderRadius: "20px",
-          background: "#111a3a",
         }}
       >
         <h2>Saldo: $0</h2>
-        <h2>Timer: 05:00</h2>
+        <p>Timer: 05:00</p>
       </div>
     </div>
   );
