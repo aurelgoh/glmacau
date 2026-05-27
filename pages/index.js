@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter();
 
   const games = [
     "GL5 Ball",
@@ -10,27 +10,27 @@ export default function Home() {
     "Tencent of King",
     "Lucky 5D",
     "GL Pick Up",
-    "GL Racer"
-  ]
+    "GL Racer",
+  ];
 
   return (
     <div
       style={{
-        minHeight: '100vh',
-        background: '#050816',
-        color: 'white',
-        padding: '40px',
-        fontFamily: 'sans-serif'
+        minHeight: "100vh",
+        background: "#050816",
+        color: "white",
+        padding: "40px",
+        fontFamily: "sans-serif",
       }}
     >
-      <h1 style={{ fontSize: '50px' }}>GL Macau</h1>
+      <h1>GL Macau</h1>
 
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))',
-          gap: '20px',
-          marginTop: '40px'
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+          gap: "20px",
+          marginTop: "40px",
         }}
       >
         {games.map((game) => (
@@ -40,12 +40,10 @@ export default function Home() {
               router.push(`/game?name=${encodeURIComponent(game)}`)
             }
             style={{
-              padding: '40px',
-              borderRadius: '20px',
-              background: '#111a3a',
-              cursor: 'pointer',
-              textAlign: 'center',
-              border: '1px solid #5b5fff'
+              background: "#111a3a",
+              padding: "30px",
+              borderRadius: "20px",
+              cursor: "pointer",
             }}
           >
             <h2>{game}</h2>
@@ -53,5 +51,5 @@ export default function Home() {
         ))}
       </div>
     </div>
-  )
+  );
 }
