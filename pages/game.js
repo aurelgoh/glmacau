@@ -3,17 +3,27 @@ import { useEffect, useState } from "react";
 
 export default function Game() {
   const router = useRouter();
+
+  // WAJIB ADA
   const { name } = router.query;
 
+  // NAMA GAME OTOMATIS
   const gameName = name || "GL5 Ball";
 
+  // TIMER 5 MENIT
   const [time, setTime] = useState(300);
+
+  // CATEGORY TERPILIH
   const [selected, setSelected] = useState([]);
 
+  // TIMER LOOP
   useEffect(() => {
     const interval = setInterval(() => {
       setTime((prev) => {
-        if (prev <= 1) return 300;
+        if (prev <= 1) {
+          return 300;
+        }
+
         return prev - 1;
       });
     }, 1000);
@@ -21,6 +31,7 @@ export default function Game() {
     return () => clearInterval(interval);
   }, []);
 
+  // DATA CATEGORY
   const categories = [
     {
       name: "Kecil",
@@ -52,304 +63,463 @@ export default function Game() {
       sub: "Kepala>Ekor",
       color: "#facc15",
     },
+    {
+      name: "Merah",
+      sub: "Red Ball",
+      color: "#ef4444",
+    },
+    {
+      name: "Hitam",
+      sub: "Black Ball",
+      color: "#64748b",
+    },
   ];
 
+  // PILIH CATEGORY
   const toggleSelect = (item) => {
     if (selected.includes(item)) {
-      setSelected(selected.filter((x) => x !== item));
+      setSelected(
+        selected.filter((x) => x !== item)
+      );
     } else {
       setSelected([...selected, item]);
     }
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "#020617",
-        color: "white",
-        fontFamily: "Arial",
-      }}
-    >
-      {/* TOPBAR */}
+    <>
+      <style jsx global>{`
+        body {
+          margin: 0;
+          background: #020617;
+          font-family: Arial;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+      `}</style>
+
       <div
         style={{
-          height: 80,
-          borderBottom: "1px solid rgba(255,255,255,.08)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0 40px",
+          minHeight: "100vh",
+          background:
+            "linear-gradient(to bottom,#020617,#020b3f)",
+          color: "white",
         }}
       >
-        <h1 style={{ color: "#c084fc" }}>GLMacau</h1>
-
+        {/* TOPBAR */}
         <div
           style={{
+            height: 80,
+            borderBottom:
+              "1px solid rgba(255,255,255,.08)",
+
             display: "flex",
-            gap: 30,
-            color: "#aaa",
+            alignItems: "center",
+            justifyContent: "space-between",
+
+            padding: "0 40px",
+
+            background: "#020617",
+
+            position: "sticky",
+            top: 0,
+            zIndex: 999,
           }}
         >
-          <span>Home</span>
-          <span>Withdraw</span>
-          <span>Mine</span>
-          <span>Recharge</span>
-          <span>Maps</span>
-        </div>
-
-        <div
-          style={{
-            background: "#111827",
-            padding: "10px 20px",
-            borderRadius: 999,
-            color: "#22c55e",
-          }}
-        >
-          $0
-        </div>
-      </div>
-
-      {/* CONTENT */}
-      <div
-        style={{
-          maxWidth: 1400,
-          margin: "30px auto",
-          padding: 20,
-        }}
-      >
-        {/* HEADER */}
-        <div
-          style={{
-            background:
-              "linear-gradient(to right,#9333ea,#2563eb)",
-            borderRadius: 25,
-            padding: 30,
-          }}
-        >
-          <button
-            onClick={() => router.push("/home")}
-            style={{
-              background: "#00000055",
-              border: "none",
-              color: "white",
-              fontSize: 24,
-              borderRadius: 12,
-              width: 50,
-              height: 50,
-              cursor: "pointer",
-            }}
-          >
-            ←
-          </button>
-
+          {/* LOGO */}
           <div
             style={{
-              textAlign: "center",
-              marginTop: 10,
+              display: "flex",
+              alignItems: "center",
+              gap: 15,
             }}
           >
+            <div
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 14,
+
+                background:
+                  "linear-gradient(135deg,#9333ea,#2563eb)",
+
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+
+                fontWeight: "bold",
+                fontSize: 28,
+              }}
+            >
+              G
+            </div>
+
             <h1
               style={{
-                fontSize: 48,
-                marginBottom: 10,
+                color: "#c084fc",
               }}
             >
-              {gameName}
+              GLMacau
             </h1>
+          </div>
 
-            <p
-              style={{
-                color: "#ddd",
-              }}
-            >
-              Period:20260527-081 • WIB
-            </p>
+          {/* MENU */}
+          <div
+            style={{
+              display: "flex",
+              gap: 30,
+              color: "#aaa",
+              fontSize: 18,
+            }}
+          >
+            <span>Home</span>
+            <span>Withdraw</span>
+            <span>Mine</span>
+            <span>Recharge</span>
+            <span>Maps</span>
           </div>
 
           {/* SALDO */}
           <div
             style={{
-              marginTop: 25,
-              background: "#064e3b",
-              padding: 20,
-              borderRadius: 20,
-              textAlign: "center",
-              fontSize: 40,
+              background: "#111827",
+              padding: "10px 20px",
+              borderRadius: 999,
               color: "#22c55e",
               fontWeight: "bold",
             }}
           >
-            Saldo: $0
+            $0
           </div>
         </div>
 
-        {/* INFO */}
+        {/* CONTENT */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 20,
-            marginTop: 20,
+            maxWidth: 1450,
+            margin: "30px auto",
+            padding: 20,
           }}
         >
+          {/* HEADER GAME */}
           <div
             style={{
               background:
-                "linear-gradient(to right,#581c87,#111827)",
-              padding: 30,
-              borderRadius: 20,
+                "linear-gradient(to right,#9333ea,#2563eb)",
+
+              borderRadius: 28,
+
+              padding: 35,
             }}
           >
-            <p style={{ color: "#ccc" }}>
-              Waktu Tersisa
-            </p>
-
-            <h1
+            {/* BACK */}
+            <button
+              onClick={() => router.push("/home")}
               style={{
-                fontSize: 55,
+                background: "#00000055",
+                border: "none",
+                color: "white",
+
+                width: 55,
+                height: 55,
+
+                borderRadius: 14,
+
+                fontSize: 28,
+
+                cursor: "pointer",
               }}
             >
-              {Math.floor(time / 60)}:
-              {String(time % 60).padStart(2, "0")}
-            </h1>
-          </div>
+              ←
+            </button>
 
-          <div
-            style={{
-              background:
-                "linear-gradient(to right,#78350f,#111827)",
-              padding: 30,
-              borderRadius: 20,
-            }}
-          >
-            <p style={{ color: "#ccc" }}>
-              Odds K/B
-            </p>
-
-            <h1
+            {/* TITLE */}
+            <div
               style={{
-                fontSize: 55,
-                color: "#facc15",
+                textAlign: "center",
+                marginTop: 15,
               }}
             >
-              1.98x
-            </h1>
+              {/* INI PENTING */}
+              <h1
+                style={{
+                  fontSize: 55,
+                  marginBottom: 10,
+                }}
+              >
+                {gameName}
+              </h1>
+
+              <p
+                style={{
+                  color: "#ddd",
+                  fontSize: 18,
+                }}
+              >
+                Period:20260527-081 • WIB
+              </p>
+            </div>
+
+            {/* BALANCE */}
+            <div
+              style={{
+                marginTop: 25,
+
+                background: "#064e3b",
+
+                padding: 22,
+
+                borderRadius: 20,
+
+                textAlign: "center",
+
+                fontSize: 42,
+
+                color: "#22c55e",
+
+                fontWeight: "bold",
+              }}
+            >
+              Saldo: $0
+            </div>
           </div>
-        </div>
 
-        {/* CATEGORY */}
-        <div
-          style={{
-            marginTop: 30,
-            background: "#0f172a",
-            borderRadius: 25,
-            padding: 30,
-            border: "1px solid rgba(255,255,255,.08)",
-          }}
-        >
-          <h1
-            style={{
-              fontSize: 42,
-            }}
-          >
-            Pilih Kategori
-          </h1>
-
-          <p
-            style={{
-              color: "#999",
-              marginBottom: 30,
-            }}
-          >
-            Pilih satu atau lebih kategori taruhan
-          </p>
-
+          {/* INFO CARD */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(350px,1fr))",
+              gridTemplateColumns: "1fr 1fr",
+
               gap: 20,
+
+              marginTop: 25,
             }}
           >
-            {categories.map((item) => (
-              <div
-                key={item.name}
-                onClick={() => toggleSelect(item.name)}
-                style={{
-                  background: "#1e293b",
-                  borderRadius: 20,
-                  padding: 40,
-                  cursor: "pointer",
-                  border: selected.includes(item.name)
-                    ? "3px solid white"
-                    : `2px solid ${item.color}`,
-                  textAlign: "center",
-                }}
-              >
-                <h1
-                  style={{
-                    color: item.color,
-                    fontSize: 42,
-                  }}
-                >
-                  {item.name}
-                </h1>
-
-                <p
-                  style={{
-                    color: "#999",
-                    marginTop: 10,
-                  }}
-                >
-                  {item.sub}
-                </p>
-
-                <div
-                  style={{
-                    marginTop: 20,
-                    display: "inline-block",
-                    background: "#a16207",
-                    padding: "8px 18px",
-                    borderRadius: 999,
-                    fontWeight: "bold",
-                  }}
-                >
-                  1.98x
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {selected.length > 0 && (
+            {/* TIMER */}
             <div
               style={{
-                position: "fixed",
-                bottom: 30,
-                left: "50%",
-                transform: "translateX(-50%)",
+                background:
+                  "linear-gradient(to right,#581c87,#111827)",
+
+                padding: 30,
+
+                borderRadius: 22,
               }}
             >
-              <button
+              <p
                 style={{
-                  background:
-                    "linear-gradient(to right,#a855f7,#3b82f6)",
-                  border: "none",
-                  padding: "20px 50px",
-                  borderRadius: 999,
-                  color: "white",
-                  fontSize: 24,
-                  fontWeight: "bold",
-                  cursor: "pointer",
+                  color: "#ccc",
+                  fontSize: 18,
                 }}
               >
-                Lanjutkan Taruhan ({selected.length})
-              </button>
+                Waktu Tersisa
+              </p>
+
+              <h1
+                style={{
+                  fontSize: 60,
+                  marginTop: 15,
+                }}
+              >
+                {Math.floor(time / 60)}:
+                {String(time % 60).padStart(2, "0")}
+              </h1>
             </div>
-          )}
+
+            {/* ODDS */}
+            <div
+              style={{
+                background:
+                  "linear-gradient(to right,#78350f,#111827)",
+
+                padding: 30,
+
+                borderRadius: 22,
+              }}
+            >
+              <p
+                style={{
+                  color: "#ccc",
+                  fontSize: 18,
+                }}
+              >
+                Odds K/B
+              </p>
+
+              <h1
+                style={{
+                  fontSize: 60,
+                  color: "#facc15",
+                  marginTop: 15,
+                }}
+              >
+                1.98x
+              </h1>
+            </div>
+          </div>
+
+          {/* CATEGORY */}
+          <div
+            style={{
+              marginTop: 30,
+
+              background: "#0f172a",
+
+              borderRadius: 28,
+
+              padding: 30,
+
+              border:
+                "1px solid rgba(255,255,255,.08)",
+            }}
+          >
+            <h1
+              style={{
+                fontSize: 42,
+              }}
+            >
+              Pilih Kategori
+            </h1>
+
+            <p
+              style={{
+                color: "#999",
+                marginBottom: 35,
+              }}
+            >
+              Pilih satu atau lebih kategori taruhan
+            </p>
+
+            {/* GRID */}
+            <div
+              style={{
+                display: "grid",
+
+                gridTemplateColumns:
+                  "repeat(auto-fit,minmax(320px,1fr))",
+
+                gap: 20,
+              }}
+            >
+              {categories.map((item) => (
+                <div
+                  key={item.name}
+                  onClick={() =>
+                    toggleSelect(item.name)
+                  }
+                  style={{
+                    background: "#1e293b",
+
+                    borderRadius: 24,
+
+                    padding: 40,
+
+                    cursor: "pointer",
+
+                    textAlign: "center",
+
+                    transition: ".2s",
+
+                    border: selected.includes(
+                      item.name
+                    )
+                      ? "3px solid white"
+                      : `2px solid ${item.color}`,
+                  }}
+                >
+                  {/* TITLE */}
+                  <h1
+                    style={{
+                      color: item.color,
+
+                      fontSize: 42,
+
+                      marginBottom: 15,
+                    }}
+                  >
+                    {item.name}
+                  </h1>
+
+                  {/* SUB */}
+                  <p
+                    style={{
+                      color: "#aaa",
+                      fontSize: 18,
+                    }}
+                  >
+                    {item.sub}
+                  </p>
+
+                  {/* ODDS */}
+                  <div
+                    style={{
+                      marginTop: 25,
+
+                      display: "inline-block",
+
+                      background: "#a16207",
+
+                      padding: "10px 20px",
+
+                      borderRadius: 999,
+
+                      fontWeight: "bold",
+
+                      fontSize: 18,
+                    }}
+                  >
+                    1.98x
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* BUTTON */}
+            {selected.length > 0 && (
+              <div
+                style={{
+                  position: "fixed",
+
+                  bottom: 30,
+
+                  left: "50%",
+
+                  transform: "translateX(-50%)",
+                }}
+              >
+                <button
+                  style={{
+                    background:
+                      "linear-gradient(to right,#a855f7,#3b82f6)",
+
+                    border: "none",
+
+                    padding: "20px 55px",
+
+                    borderRadius: 999,
+
+                    color: "white",
+
+                    fontSize: 24,
+
+                    fontWeight: "bold",
+
+                    cursor: "pointer",
+
+                    boxShadow:
+                      "0 0 30px rgba(168,85,247,.5)",
+                  }}
+                >
+                  Lanjutkan Taruhan (
+                  {selected.length})
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
